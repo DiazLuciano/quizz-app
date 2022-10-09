@@ -1,0 +1,28 @@
+<div class="container">
+
+  <!-- Input -->
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4 text-center">
+      <mat-form-field appearance="fill">
+        <mat-label>Game's PIN</mat-label>
+        <input matInput type="text" [(ngModel)]="PIN" maxlength="6" required>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Play -->
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4">
+      <button mat-raised-button class="main-button" color="primary">PLAY</button>
+    </div>
+  </div>
+
+  <!-- To Login -->
+  <div class="fixed-bottom">
+    <p class="text-center text">
+      Make your own free questionnaire
+      <a routerLink="/auth/login" class="link">here</a>
+    </p>
+  </div>
+
+</div>

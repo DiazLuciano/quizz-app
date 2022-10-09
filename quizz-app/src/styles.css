@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100% !important; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: rgb(51, 51, 51) !important;
+  color: #fff !important;
+}
+a {
+  color: #fff !important;
+}
+
+.row {
+  width: 100%;
+}
+
+/* Buttons */
+.main-button {
+  font-size: 22px;
+  width: 100% !important;
+  height: 50px;
+}
+
