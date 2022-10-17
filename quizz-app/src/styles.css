@@ -15,12 +15,19 @@ a {
   width: 100%;
 }
 
-.container {}
+.container {
+  height: 100vh;
+}
 
 /* Buttons */
 .main-button {
   font-size: 22px;
   width: 100% !important;
   height: 50px;
+}
+
+/* Icons */
+.fa-eye {
+  cursor: pointer;
 }
 

@@ -1,0 +1,36 @@
+<div class="container container d-flex justify-content-center align-items-center">
+  <mat-card>
+
+    <mat-card-title class="mb-4">Register</mat-card-title>
+    <mat-card-subtitle>
+      Create an account to start your own quizz!
+    </mat-card-subtitle>
+
+    <mat-card-content class="d-flex flex-column">
+      <form>
+        <mat-form-field appearance="fill">
+          <input type="email" matInput placeholder="Ex. pat@example.com" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <input type="password" matInput placeholder="Password">
+          <mat-icon matSuffix>
+            <i [ngClass]="{
+              'fa-solid fa-eye': visibility === true,
+              'fa-solid fa-eye-slash': visibility === false}"
+            (click)="changeVisibility()"></i>
+          </mat-icon>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-divider inset></mat-divider>
+
+    <mat-card-actions class="d-flex p-3 justify-content-between">
+      <button mat-stroked-button routerLink="/auth/login">BACK</button>
+      <button mat-flat-button color="primary">REGISTER</button>
+    </mat-card-actions>
+
+
+  </mat-card>
+</div>
+

@@ -7,8 +7,13 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     data: {
-      title: 'Quizz Game'
+      title: 'Quizz Game',
+      description: 'Home component'
     }
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then( m => m.AuthModule)
   }
 ];
 

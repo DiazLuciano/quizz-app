@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
       filter( events => events instanceof NavigationEnd),
       map( () => {
 
-        const child = this.aRoute.firstChild;
+        let child = this.aRoute.firstChild;
         if( child?.snapshot.data['title'] ) {
           return child.snapshot.data['title'];
         }
