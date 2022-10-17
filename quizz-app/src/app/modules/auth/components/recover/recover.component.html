@@ -1,1 +1,34 @@
-<p>recover</p>
+<div *ngIf="loading" class="d-flex justify-content-center mt-5">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!loading" class="container d-flex justify-content-center align-items-center">
+
+  <mat-card>
+
+    <mat-card-title class="mb-4">Recover Password</mat-card-title>
+    <mat-card-subtitle>
+      Put your username/email to sent you a recovery link verification to restore your password.
+    </mat-card-subtitle>
+
+    <mat-card-content class="d-flex flex-column">
+      <form>
+        <mat-form-field appearance="fill">
+          <input type="email" matInput placeholder="Ex. pat@example.com" autocomplete="off">
+          <mat-icon matSuffix>
+            <i class="fa-solid fa-envelope"></i>
+          </mat-icon>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+
+    <mat-card-actions class="d-flex p-3 justify-content-between">
+      <button mat-stroked-button routerLink="/auth/login">BACK</button>
+      <button mat-flat-button color="primary" type="submit">RECOVER</button>
+    </mat-card-actions>
+
+
+  </mat-card>
+</div>
+
+

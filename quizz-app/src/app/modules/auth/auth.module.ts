@@ -6,13 +6,15 @@ import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from '../../shared/shared.module';
 import { RecoverComponent } from './components/recover/recover.component';
 import { RegisterComponent } from './components/register/register.component';
+import { VerifyComponent } from './components/verify/verify.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RecoverComponent,
-    RegisterComponent
+    RegisterComponent,
+    VerifyComponent
   ],
   imports: [
     CommonModule,

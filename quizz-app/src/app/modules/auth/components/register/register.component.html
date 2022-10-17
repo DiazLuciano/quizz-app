@@ -1,4 +1,8 @@
-<div class="container container d-flex justify-content-center align-items-center">
+<div *ngIf="loading" class="d-flex justify-content-center mt-5">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!loading" class="container d-flex justify-content-center align-items-center">
+
   <mat-card>
 
     <mat-card-title class="mb-4">Register</mat-card-title>
@@ -12,17 +16,16 @@
           <input type="email" matInput placeholder="Ex. pat@example.com" autocomplete="off">
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <input type="password" matInput placeholder="Password">
+          <input [type]="inputType" matInput placeholder="Password">
           <mat-icon matSuffix>
-            <i [ngClass]="{
-              'fa-solid fa-eye': visibility === true,
-              'fa-solid fa-eye-slash': visibility === false}"
-            (click)="changeVisibility()"></i>
+            <i (click)="changeVisibility()" class="fa-solid" [ngClass]="{
+              'fa-eye-slash': visibility === true,
+              'fa-eye': visibility === false}"
+            ></i>
           </mat-icon>
         </mat-form-field>
       </form>
     </mat-card-content>
-
     <mat-divider inset></mat-divider>
 
     <mat-card-actions class="d-flex p-3 justify-content-between">

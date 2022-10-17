@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecoverComponent implements OnInit {
 
+  public loading: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
