@@ -4,7 +4,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [],
@@ -15,8 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatCardModule,
     MatDividerModule,
-    FormsModule,
-    ReactiveFormsModule
+    MatSidenavModule,
+    MatToolbarModule
   ],
   exports: [
     MatCardModule,
@@ -25,8 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatCardModule,
     MatDividerModule,
-    FormsModule,
-    ReactiveFormsModule
+    MatSidenavModule,
+    MatToolbarModule
   ]
 })
 export class MaterialModule { }
