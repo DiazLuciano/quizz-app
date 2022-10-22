@@ -18,7 +18,7 @@
         <mat-form-field appearance="fill">
           <input [type]="inputType" matInput placeholder="Password">
           <mat-icon matSuffix>
-            <i (click)="changeVisibility()" class="fa-solid" [ngClass]="{
+            <i (click)="passwordVisibility()" class="fa-solid" [ngClass]="{
               'fa-eye-slash': visibility === true,
               'fa-eye': visibility === false}"
             ></i>

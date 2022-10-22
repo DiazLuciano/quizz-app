@@ -13,7 +13,7 @@ import { ListQuestionnaireComponent } from './components/list-questionnaire/list
     NavigationComponent,
     ListQuestionnaireComponent,
     DashboardComponent,
-    ListQuestionnaireComponent
+    ListQuestionnaireComponent,
   ],
   imports: [
     CommonModule,

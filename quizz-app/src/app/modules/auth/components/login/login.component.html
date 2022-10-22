@@ -1,22 +1,35 @@
 <div class="container container d-flex justify-content-center align-items-center">
-  <mat-card>
+
+  <!-- Spinner -->
+  <div *ngIf="loading">
+    <app-spinner></app-spinner>
+  </div>
+
+  <!-- Card Login -->
+  <mat-card *ngIf="!loading">
 
     <mat-card-title class="mb-4">Sign In</mat-card-title>
 
     <mat-card-content class="d-flex flex-column">
-      <form>
+      <form [formGroup]="form">
         <mat-form-field appearance="fill">
-          <input type="email" matInput placeholder="Ex. pat@example.com">
+          <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com">
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <input type="password" matInput placeholder="Password">
+          <input formControlName="password" [type]="inputType" matInput placeholder="Password">
+          <mat-icon matSuffix>
+            <i (click)="passwordVisibility()" class="fa-solid" [ngClass]="{
+              'fa-eye-slash': visibility === true,
+              'fa-eye': visibility === false}"
+            ></i>
+          </mat-icon>
         </mat-form-field>
       </form>
     </mat-card-content>
 
     <mat-card-actions class="d-flex p-3 justify-content-between">
       <button mat-stroked-button routerLink="/">BACK</button>
-      <button mat-flat-button color="primary">LOG IN</button>
+      <button mat-flat-button color="primary" (click)="login()" [disabled]="form.invalid">LOG IN</button>
     </mat-card-actions>
 
     <mat-divider inset></mat-divider>

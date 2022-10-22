@@ -31,7 +31,7 @@ export class RegisterComponent {
   /**
    * This method allows to change the visibility of the password content.
    */
-  public changeVisibility() {
+  public passwordVisibility() {
 
     if( this.visibility === true) {
       this.visibility = false;
