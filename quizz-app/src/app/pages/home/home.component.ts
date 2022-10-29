@@ -7,29 +7,13 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   /**
    * Properties.
    */
-  PIN = '';
-  title = '';
+  public PIN = '';
+  public title = '';
 
-
-  /**
-   * Constructor.
-   * @param _titleService
-   */
-  constructor(
-    private _titleService: Title,
-  ) {
-    this.title = _titleService.getTitle();
-  }
-
-  /**
-   * NgOnInit
-   */
-  ngOnInit(): void {
-  }
 
 }

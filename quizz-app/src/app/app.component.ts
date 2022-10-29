@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { filter, map, Subscription } from 'rxjs';
 
 @Component({
@@ -8,7 +8,7 @@ import { filter, map, Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   title = 'quizz-app';
   subscription: Subscription = new Subscription;
 
@@ -16,32 +16,44 @@ export class AppComponent implements OnInit, OnDestroy {
    *
    */
   constructor(
-    private _router: Router,
-    private aRoute: ActivatedRoute,
-    private _titleService: Title
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly titleService: Title,
+    private readonly metaSerivce: Meta
   ) {
 
   }
 
   ngOnInit():void {
 
-    this.subscription = this._router.events.pipe(
-      filter( events => events instanceof NavigationEnd),
-      map( () => {
+    this.router
+      .events.pipe(
 
-        let child = this.aRoute.firstChild;
-        if( child?.snapshot.data['title'] ) {
-          return child.snapshot.data['title'];
-        }
+        filter( (events:any) => events instanceof NavigationEnd)
 
-        return this.title;
-      })
-    ).subscribe( (ttl: string) => {
-      this._titleService.setTitle(ttl);
-    });
+        ).subscribe( () => {
+
+          var route = this.getChild(this.activatedRoute)
+          var data = route.snapshot.data;
+
+          this.titleService.setTitle(data.title);
+
+          if(data.description) {
+            this.metaSerivce.updateTag( { name: 'description', content: data.description })
+
+          } else {
+            this.metaSerivce.removeTag("name='description'")
+          }
+    })
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  private getChild(activatedRoute: ActivatedRoute): any {
+
+    if(activatedRoute.firstChild)
+      return this.getChild(activatedRoute.firstChild);
+    else
+      return activatedRoute;
+
   }
+
 }

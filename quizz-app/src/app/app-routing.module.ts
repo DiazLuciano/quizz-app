@@ -8,7 +8,7 @@ const routes: Routes = [
     component: HomeComponent,
     data: {
       title: 'Quizz Game',
-      description: 'Home component'
+      description: 'This is the home page, to start a quizz game'
     }
   },
   {
