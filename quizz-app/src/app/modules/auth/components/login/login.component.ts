@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../../../core/auth/services/auth/auth.service';
-import { Router } from '@angular/router';
-import { InputType } from './login.const';
-import { NotificationService } from '../../../../../core/services/notification/notification.service';
-import { ErrorAuthService } from '../../../../../core/auth/services/error/error-auth.service';
+import { InputType } from '../../constants/login.const';
+import { AuthUserService } from '../services/auth/auth-user.service';
+import { IPreUser } from '../../../../../core/auth/interfaces/auth.interface';
 
 @Component({
   selector: 'app-login',
@@ -46,9 +43,7 @@ export class LoginComponent {
    * @param fb class that allows the building of a form with the data inputs.
    */
   constructor(
-    private _authService: AuthService,
-    private _router: Router,
-    private _errorAuthService: ErrorAuthService,
+    private _authUserService: AuthUserService,
     private fb: FormBuilder
     ) {
 
@@ -70,24 +65,17 @@ export class LoginComponent {
     // Show loading spinner.
     this.loading = true;
 
-    // Get the input data.
-    const credentialsToValidate = {
+    // Get form's data.
+    const preUser: IPreUser = {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value
     }
 
-    // Call to fire service sign in.
-    this._authService.signIn(credentialsToValidate.email, credentialsToValidate.password).then( (res) => {
+    this._authUserService.signIn(preUser);
 
-      this.cleanForm();
-      this._router.navigate(['/admin']);
-
-    }).catch( (error) => {
-      this._errorAuthService.manageErrors(error.code);
-
-    }).finally( () => {
+    setTimeout(() => {
       this.loading = false;
-    });
+    }, 1000);
   }
 
   /**

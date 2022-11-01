@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Subject, Observable } from 'rxjs';
-import { IUser } from '../../interfaces/auth.interface';
+import { IPreUser, IUser } from '../../interfaces/auth.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,20 +21,35 @@ export class AuthService {
     return this.$isLogged.asObservable();
   }
 
+  public getUserFromSessionStorage(): void {
+
+
+  }
+
+  public setUserToSessionStorage(resUser: any): void {
+
+    const user: IUser = {
+      uid: resUser.uid,
+      email: resUser.email,
+    }
+
+    sessionStorage.setItem('user', JSON.stringify(user));
+  }
+
   constructor(private _angularAuth: AngularFireAuth) { }
 
   /** PUBLIC METHODS */
 
 
-  public signIn(email: string, password: string): Promise<unknown> {
-    return this._angularAuth.signInWithEmailAndPassword(email, password);
+  public signIn(user: IPreUser): Promise<any> {
+    return this._angularAuth.signInWithEmailAndPassword(user.email, user.password);
   }
 
   public signOut(): Promise<void> {
     return this._angularAuth.signOut();
   }
 
-  public signUp(user: IUser): Promise<unknown> {
+  public signUp(user: IPreUser): Promise<unknown> {
     return this._angularAuth.createUserWithEmailAndPassword(user.email, user.password!);
   }
 }
