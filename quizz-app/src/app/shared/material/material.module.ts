@@ -17,7 +17,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatCardModule,
     MatDividerModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   exports: [
     MatCardModule,
@@ -27,7 +27,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatCardModule,
     MatDividerModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
   ]
 })
 export class MaterialModule { }

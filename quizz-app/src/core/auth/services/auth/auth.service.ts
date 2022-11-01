@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Subject, Observable } from 'rxjs';
-import { IUser } from './interfaces/auth.interface';
+import { IUser } from '../../interfaces/auth.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +24,8 @@ export class AuthService {
   constructor(private _angularAuth: AngularFireAuth) { }
 
   /** PUBLIC METHODS */
+
+
   public signIn(email: string, password: string): Promise<unknown> {
     return this._angularAuth.signInWithEmailAndPassword(email, password);
   }

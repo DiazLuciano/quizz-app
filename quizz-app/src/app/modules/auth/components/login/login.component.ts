@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from '../../../../../core/auth/auth.service';
+import { AuthService } from '../../../../../core/auth/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { InputType } from './login.const';
+import { NotificationService } from '../../../../../core/services/notification/notification.service';
+import { ErrorAuthService } from '../../../../../core/auth/services/error/error-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -45,14 +47,16 @@ export class LoginComponent {
    */
   constructor(
     private _authService: AuthService,
-    private _toastr: ToastrService,
     private _router: Router,
+    private _errorAuthService: ErrorAuthService,
     private fb: FormBuilder
     ) {
+
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(4)]]
     });
+
    }
 
   /** PUBLIC METHODS */
@@ -61,7 +65,7 @@ export class LoginComponent {
   /**
    * This method manage the data on the inputs to make a request to login to firebase.
    */
-  public login(): void {
+  public signIn(): void {
 
     // Show loading spinner.
     this.loading = true;
@@ -75,14 +79,11 @@ export class LoginComponent {
     // Call to fire service sign in.
     this._authService.signIn(credentialsToValidate.email, credentialsToValidate.password).then( (res) => {
 
-      console.log(res);
       this.cleanForm();
       this._router.navigate(['/admin']);
 
     }).catch( (error) => {
-
-      this._toastr.error('An Error Has Ocurred', 'Oops')
-      console.log(error);
+      this._errorAuthService.manageErrors(error.code);
 
     }).finally( () => {
       this.loading = false;
@@ -111,6 +112,10 @@ export class LoginComponent {
    */
   private cleanForm():void {
     this.form.reset();
+  }
+
+  private errorHandler(): void {
+
   }
 
 }

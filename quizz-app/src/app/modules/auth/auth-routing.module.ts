@@ -12,7 +12,7 @@ const routes: Routes = [
     pathMatch: 'full',
     data: {
       title: 'Login',
-      description: 'Put your credentials to enter as an admin'
+      description: 'Sign in as an admin to create quizzes'
     }
   },
   {

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule, Meta, Title } from '@angular/platform-browser';
 
 /** Routing */
@@ -20,6 +20,10 @@ import { environment } from '../environments/environment.prod';
 /** Firebase */
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { CoreModule } from 'src/core/core.module';
+import { HttpClientModule } from '@angular/common/http';
+import { TranslocoRootModule } from './transloco-root.module';
+import { GlobalErrorHandlerService } from '../core/services/error/global-error-handler.service';
 
 @NgModule({
   declarations: [
@@ -29,15 +33,27 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+
+    // Routing
+    AppRoutingModule,
+
+    // Shared, Core
     SharedModule,
+    CoreModule,
+
+    // Toastr
     ToastrModule.forRoot(),
+
+    // Firebase
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule,
+    TranslocoRootModule
   ],
   providers: [
-    Meta
+    Meta,
+    [{ provide: ErrorHandler, useClass: GlobalErrorHandlerService}]
   ],
   bootstrap: [AppComponent]
 })
