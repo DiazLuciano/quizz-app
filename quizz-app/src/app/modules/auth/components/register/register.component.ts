@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +26,26 @@ export class RegisterComponent {
    */
   public inputType: string = 'password';
 
+  /**
+   * Property that represents the register form data.
+   */
+  public form: FormGroup;
+
+  /**
+   * Constructor
+   */
+  constructor(private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      repeatPassword: ['', Validators.required]
+    },
+    {
+      validator: this.checkPasswords
+    }
+    );
+  }
+
   /* PUBLIC METHODS */
   /* -------------------------------------------------------------------*/
 
@@ -40,6 +61,14 @@ export class RegisterComponent {
       this.visibility = true;
       this.inputType = 'text';
     }
+  }
+
+  public checkPasswords(form: FormGroup) {
+
+    const pass = form.get('password')?.value;
+    const repeatPassword = form.get('repeatPassword')?.value;
+
+    return pass === repeatPassword ? null : { notSame: true };
   }
 
 }

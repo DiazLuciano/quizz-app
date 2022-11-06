@@ -23,7 +23,6 @@ export class AuthService {
 
   public getUserFromSessionStorage(): void {
 
-
   }
 
   public setUserToSessionStorage(resUser: any): void {
@@ -36,16 +35,18 @@ export class AuthService {
     sessionStorage.setItem('user', JSON.stringify(user));
   }
 
+  private removeUserFromSessionStorage(): void {
+    sessionStorage.removeItem('user');
+  }
+
   constructor(private _angularAuth: AngularFireAuth) { }
-
-  /** PUBLIC METHODS */
-
 
   public signIn(user: IPreUser): Promise<any> {
     return this._angularAuth.signInWithEmailAndPassword(user.email, user.password);
   }
 
   public signOut(): Promise<void> {
+    this.removeUserFromSessionStorage();
     return this._angularAuth.signOut();
   }
 

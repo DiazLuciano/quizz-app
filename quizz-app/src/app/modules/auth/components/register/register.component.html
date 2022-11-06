@@ -11,12 +11,30 @@
     </mat-card-subtitle>
 
     <mat-card-content class="d-flex flex-column">
-      <form>
-        <mat-form-field appearance="fill">
-          <input type="email" matInput placeholder="Ex. pat@example.com" autocomplete="off">
+      <form [formGroup]="form">
+
+        <!-- Email -->
+        <mat-form-field appearance="fill" lass="mb-2">
+          <input type="email" matInput placeholder="Ex. pat@example.com" autocomplete="off" formControlName="email" >
         </mat-form-field>
+        <mat-error *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+          Email is <strong>required</strong>
+        </mat-error>
+
+        <!-- Password -->
+        <mat-form-field appearance="fill" class="mb-2">
+          <input [type]="inputType" matInput placeholder="Password" formControlName="password" >
+        </mat-form-field>
+        <mat-error *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+          Password is <strong>required</strong>
+        </mat-error>
+
+        <!-- Repeat Password -->
         <mat-form-field appearance="fill">
-          <input [type]="inputType" matInput placeholder="Password">
+          <input [type]="inputType" matInput placeholder="Repeat Password" formControlName="repeatPassword" >
           <mat-icon matSuffix>
             <i (click)="passwordVisibility()" class="fa-solid" [ngClass]="{
               'fa-eye-slash': visibility === true,
@@ -24,13 +42,20 @@
             ></i>
           </mat-icon>
         </mat-form-field>
+        <mat-error *ngIf="form.get('repeatPassword')?.hasError('required') && form.get('repeatPassword')?.touched">
+          Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="form.hasError('notSame') && form.get('repeatPassword')?.touched">
+          Passowords are <strong>not same</strong>
+        </mat-error>
       </form>
     </mat-card-content>
     <mat-divider inset></mat-divider>
 
+    <!-- Action Buttons -->
     <mat-card-actions class="d-flex p-3 justify-content-between">
       <button mat-stroked-button routerLink="/auth/login">BACK</button>
-      <button mat-flat-button color="primary">REGISTER</button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">REGISTER</button>
     </mat-card-actions>
 
 
