@@ -1,9 +1,11 @@
-<div *ngIf="loading" class="d-flex justify-content-center mt-5">
-  <app-spinner></app-spinner>
-</div>
+
 <div *ngIf="!loading" class="container d-flex justify-content-center align-items-center">
 
-  <mat-card>
+  <div *ngIf="loading" class="d-flex justify-content-center mt-5">
+    <app-spinner></app-spinner>
+  </div>
+
+  <mat-card class="animate__animated animate__fadeInLeft">
 
     <mat-card-title class="mb-4">Recover Password</mat-card-title>
     <mat-card-subtitle>
