@@ -25,17 +25,30 @@ export class AuthUserService {
         this._router.navigate(['/admin']);
 
       } else {
+        res.user?.sendEmailVerification();
         this._router.navigate(['/auth/verify']);
       }
 
     }).catch( error => {
       this._errorService.manageErrors(error.code);
     });
-
   }
 
-  public signUp(): void {
+  public signUp(preUser: IPreUser): Promise<any> {
 
+    const result = new Promise<void>((resolve, reject) => {
+
+      this._authService.signUp(preUser).then( (res:any) => {
+        res.user?.sendEmailVerification();
+        resolve(res);
+
+      }).catch( (error) => {
+        this._errorService.manageErrors(error.code)
+        reject(error);
+      });
+    });
+
+    return result;
   }
 
   public recoverPassword(): void {

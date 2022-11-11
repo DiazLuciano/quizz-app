@@ -92,18 +92,4 @@ export class LoginComponent {
     }
   }
 
-  /** PRIVATE METHODS */
-  /* -------------------------------------------------------------------*/
-
-  /**
-   * This private method cleans the Form Group.
-   */
-  private cleanForm():void {
-    this.form.reset();
-  }
-
-  private errorHandler(): void {
-
-  }
-
 }

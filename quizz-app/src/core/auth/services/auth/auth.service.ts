@@ -13,6 +13,17 @@ export class AuthService {
    */
   private $isLogged = new Subject<boolean>;
 
+  /**
+   * Constructor.
+   */
+  constructor(private _angularAuth: AngularFireAuth) { }
+
+  /** METHODS */
+
+  private removeUserFromSessionStorage(): void {
+    sessionStorage.removeItem('user');
+  }
+
   public setIsLogged(value: boolean) {
     this.$isLogged.next(value);
   }
@@ -26,20 +37,13 @@ export class AuthService {
   }
 
   public setUserToSessionStorage(resUser: any): void {
-
     const user: IUser = {
       uid: resUser.uid,
       email: resUser.email,
     }
-
     sessionStorage.setItem('user', JSON.stringify(user));
   }
 
-  private removeUserFromSessionStorage(): void {
-    sessionStorage.removeItem('user');
-  }
-
-  constructor(private _angularAuth: AngularFireAuth) { }
 
   public signIn(user: IPreUser): Promise<any> {
     return this._angularAuth.signInWithEmailAndPassword(user.email, user.password);
@@ -50,7 +54,8 @@ export class AuthService {
     return this._angularAuth.signOut();
   }
 
-  public signUp(user: IPreUser): Promise<unknown> {
+  public signUp(user: IPreUser): Promise<any> {
     return this._angularAuth.createUserWithEmailAndPassword(user.email, user.password!);
   }
+
 }

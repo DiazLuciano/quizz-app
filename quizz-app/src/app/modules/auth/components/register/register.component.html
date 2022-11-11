@@ -1,9 +1,12 @@
-<div *ngIf="loading" class="d-flex justify-content-center mt-5">
-  <app-spinner></app-spinner>
-</div>
-<div *ngIf="!loading" class="container d-flex justify-content-center align-items-center">
+<div  class="container d-flex justify-content-center align-items-center">
 
-  <mat-card>
+  <!-- Spinner -->
+  <div *ngIf="loading" class="d-flex justify-content-center">
+    <app-spinner></app-spinner>
+  </div>
+
+  <!-- Register Form -->
+  <mat-card *ngIf="!loading">
 
     <mat-card-title class="mb-4">Register</mat-card-title>
     <mat-card-subtitle>
@@ -55,7 +58,7 @@
     <!-- Action Buttons -->
     <mat-card-actions class="d-flex p-3 justify-content-between">
       <button mat-stroked-button routerLink="/auth/login">BACK</button>
-      <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">REGISTER</button>
+      <button mat-flat-button color="primary" type="submit" (click)="register()"[disabled]="form.invalid">REGISTER</button>
     </mat-card-actions>
 
 

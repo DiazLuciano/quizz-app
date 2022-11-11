@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IPreUser } from 'src/core/auth/interfaces/auth.interface';
+import { AuthUserService } from '../services/auth/auth-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -32,9 +35,18 @@ export class RegisterComponent {
   public form: FormGroup;
 
   /**
+   *
+   */
+  public preUser!: IPreUser;
+
+  /**
    * Constructor
    */
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private _authUserService: AuthUserService,
+    private _router: Router
+    ) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -46,8 +58,21 @@ export class RegisterComponent {
     );
   }
 
-  /* PUBLIC METHODS */
+  /* METHODS */
   /* -------------------------------------------------------------------*/
+
+  /**
+ * This method checks if both inputs passwords are same.
+ * @param form
+ * @returns
+ */
+  private checkPasswords(form: FormGroup) {
+
+    const pass = form.get('password')?.value;
+    const repeatPassword = form.get('repeatPassword')?.value;
+
+    return pass === repeatPassword ? null : { notSame: true };
+  }
 
   /**
    * This method allows to change the visibility of the password content.
@@ -63,12 +88,21 @@ export class RegisterComponent {
     }
   }
 
-  public checkPasswords(form: FormGroup) {
+  /**
+   * This method manage the register form for the new user.
+   */
+  public register(): void {
 
-    const pass = form.get('password')?.value;
-    const repeatPassword = form.get('repeatPassword')?.value;
+    this.loading = true;
 
-    return pass === repeatPassword ? null : { notSame: true };
+    this.preUser = {
+      email: this.form.get('email')?.value,
+      password: this.form.get('password')?.value
+    }
+
+    this._authUserService.signUp(this.preUser).then( () => {
+      this._router.navigate(['/verify']);
+    }).finally( () => { this.loading = false; });
   }
 
 }

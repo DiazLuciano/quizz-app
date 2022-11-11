@@ -14,9 +14,7 @@ export class ErrorAuthService {
   ) { }
 
   public manageErrors(code: ErrorAuthCode): void {
-
     const errorDescription: ErrorAuthDescription = this.mapAuthErrors.get(code)!;
-
     this._notificationService.showError(errorDescription);
   }
 }
