@@ -9,31 +9,58 @@ import { Router } from '@angular/router';
 })
 export class AuthUserService {
 
+  /**
+   * Constructor.
+   *
+   * @param _authService
+   * @param _errorService
+   * @param _router
+   */
   constructor(
     private _authService: AuthService,
     private _errorService: ErrorAuthService,
     private _router: Router
   ) { }
 
-  public signIn(preUser: IPreUser): void {
+  /**
+   * This method manages the sign in of the user. It verifies its email has been verified, if not it sends a verification email.
+   *
+   * @param preUser
+   */
+  public signIn(preUser: IPreUser): Promise<any> {
 
-    this._authService.signIn(preUser).then( res => {
+    const result = new Promise<void>( (resolve, reject) => {
 
-      if(res.user.emailVerified) {
+      this._authService.signIn(preUser).then( res => {
 
-        this._authService.setUserToSessionStorage(res.user);
-        this._router.navigate(['/admin']);
+        if(res.user.emailVerified) {
 
-      } else {
-        res.user?.sendEmailVerification();
-        this._router.navigate(['/auth/verify']);
-      }
+          this._authService.setUserToSessionStorage(res.user);
+          this._router.navigate(['/admin']);
 
-    }).catch( error => {
-      this._errorService.manageErrors(error.code);
-    });
+        } else {
+          res.user?.sendEmailVerification();
+          this._router.navigate(['/auth/verify']);
+        }
+
+        resolve(res);
+
+      }).catch( error => {
+
+        this._errorService.manageErrors(error.code);
+        reject(error);
+
+      });
+    })
+
+    return result;
   }
 
+  /**
+   *
+   * @param preUser
+   * @returns
+   */
   public signUp(preUser: IPreUser): Promise<any> {
 
     const result = new Promise<void>((resolve, reject) => {
@@ -55,7 +82,4 @@ export class AuthUserService {
 
   }
 
-  public signOut(): void {
-    this._authService.signOut();
-  }
 }

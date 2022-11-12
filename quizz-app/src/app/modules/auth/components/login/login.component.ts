@@ -71,11 +71,10 @@ export class LoginComponent {
       password: this.form.get('password')?.value
     }
 
-    this._authUserService.signIn(preUser);
-
-    setTimeout(() => {
+    this._authUserService.signIn(preUser).then( (res) => {
       this.loading = false;
-    }, 1000);
+    });
+
   }
 
   /**

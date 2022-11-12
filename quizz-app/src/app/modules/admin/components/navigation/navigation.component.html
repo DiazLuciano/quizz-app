@@ -37,7 +37,7 @@
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="/auth/login">
+    <button mat-button class="menu-button" (click)="signOut()">
       <mat-icon>logout</mat-icon>
       <span class="ms-1">Log Out</span>
     </button>
