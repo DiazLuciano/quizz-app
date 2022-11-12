@@ -5,3 +5,6 @@ mat-form-field {
 mat-card {
   width: 450px;
 }
+mat-error {
+  font-size: 14px;
+}
