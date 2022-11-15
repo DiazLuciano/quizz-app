@@ -23,7 +23,7 @@ export class AuthUserService {
   ) { }
 
   /**
-   * This method manages the sign in of the user. It verifies its email has been verified, if not it sends a verification email.
+   * SIGN IN Method. With an email verification if the user has not been verified.
    *
    * @param preUser
    */
@@ -34,11 +34,11 @@ export class AuthUserService {
       this._authService.signIn(preUser).then( res => {
 
         if(res.user.emailVerified) {
-
           this._authService.setUserToSessionStorage(res.user);
           this._router.navigate(['/admin']);
 
         } else {
+
           res.user?.sendEmailVerification();
           this._router.navigate(['/auth/verify']);
         }
@@ -57,6 +57,7 @@ export class AuthUserService {
   }
 
   /**
+   * SIGN UP Method.
    *
    * @param preUser
    * @returns
@@ -77,6 +78,7 @@ export class AuthUserService {
 
     return result;
   }
+
 
   public recoverPassword(): void {
 
