@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { AuthGuard } from '../core/auth/guards/auth.guard';
+import { DashboardComponent } from './modules/admin/components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    component: DashboardComponent,
     loadChildren: () => import('./modules/admin/admin.module').then( m => m.AdminModule),
     canActivate: [AuthGuard]
   },

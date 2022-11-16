@@ -71,9 +71,7 @@ export class LoginComponent {
       password: this.form.get('password')?.value
     }
 
-    this._authUserService.signIn(preUser).then( (res) => {
-      this.loading = false;
-    });
+    this._authUserService.signIn(preUser).finally( () => this.loading = false);
 
   }
 

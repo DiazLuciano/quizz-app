@@ -6,6 +6,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListQuestionnaireComponent } from './components/list-questionnaire/list-questionnaire.component';
+import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
 
 
 @NgModule({
@@ -14,6 +16,8 @@ import { ListQuestionnaireComponent } from './components/list-questionnaire/list
     ListQuestionnaireComponent,
     DashboardComponent,
     ListQuestionnaireComponent,
+    CreateQuestionnaireComponent,
+    StatisticsComponent,
   ],
   imports: [
     CommonModule,
