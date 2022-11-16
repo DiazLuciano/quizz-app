@@ -3,6 +3,7 @@ import { IPreUser } from 'src/core/auth/interfaces/auth.interface';
 import { AuthService } from 'src/core/auth/services/auth/auth.service';
 import { ErrorAuthService } from '../../../../../../core/auth/services/error/error-auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../../../../core/services/notification/notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class AuthUserService {
   constructor(
     private _authService: AuthService,
     private _errorService: ErrorAuthService,
-    private _router: Router
+    private _router: Router,
   ) { }
 
   /**
@@ -83,9 +84,13 @@ export class AuthUserService {
     return result;
   }
 
-
-  public recoverPassword(): void {
-
+  /**
+   * RECOVER PASSWORD.
+   *
+   * @param email
+   */
+  public recoverPassword(email: string): Promise<void> {
+    return this._authService.recoverPassword(email);
   }
 
 }

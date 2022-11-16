@@ -92,4 +92,8 @@ export class AuthService {
     this._router.navigate(['/auth/login']);
   }
 
+  public recoverPassword(email: string): Promise<void> {
+    return this._angularAuth.sendPasswordResetEmail(email);
+  }
+
 }

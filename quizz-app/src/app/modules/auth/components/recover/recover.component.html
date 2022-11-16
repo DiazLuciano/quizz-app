@@ -1,11 +1,13 @@
 
-<div *ngIf="!loading" class="container d-flex justify-content-center align-items-center">
+<div class="container d-flex justify-content-center align-items-center">
 
+  <!-- SPINNER   -->
   <div *ngIf="loading" class="d-flex justify-content-center mt-5">
     <app-spinner></app-spinner>
   </div>
 
-  <mat-card class="animate__animated animate__fadeInLeft">
+  <!-- FORM -->
+  <mat-card *ngIf="!loading" class="animate__animated animate__fadeInLeft">
 
     <mat-card-title class="mb-4">Recover Password</mat-card-title>
     <mat-card-subtitle>
@@ -13,9 +15,9 @@
     </mat-card-subtitle>
 
     <mat-card-content class="d-flex flex-column">
-      <form>
+      <form [formGroup]="form" >
         <mat-form-field appearance="fill">
-          <input type="email" matInput placeholder="Ex. pat@example.com" autocomplete="off">
+          <input type="email" matInput placeholder="Ex. pat@example.com" autocomplete="off" formControlName="email" required>
           <mat-icon matSuffix>
             <i class="fa-solid fa-envelope"></i>
           </mat-icon>
@@ -26,10 +28,8 @@
 
     <mat-card-actions class="d-flex p-3 justify-content-between">
       <button mat-stroked-button routerLink="/auth/login">BACK</button>
-      <button mat-flat-button color="primary" type="submit">RECOVER</button>
+      <button mat-flat-button color="primary" type="submit" (click)="recover()"[disabled]="form.invalid">RECOVER</button>
     </mat-card-actions>
-
-
   </mat-card>
 </div>
 
