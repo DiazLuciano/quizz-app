@@ -9,35 +9,29 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  /**
-   * Properties
-   */
-  private isLogged: boolean;
 
-  /**
-   * GETTERS
-   * @param value
-   */
-  public setIsLogged(value: boolean): void {
-    this.isLogged = value;
-  }
-
-  /**
-   * SETTERS
-   * @returns
-   */
-  public getIsLogged(): boolean {
-    return this.isLogged;
-  }
 
   /**
    * Constructor.
    */
   constructor(
     private _angularAuth: AngularFireAuth,
-    private _router: Router) {
-      this.isLogged = this.getIsLogged();
-     }
+    private _router: Router) {}
+
+  /* ACCESS TOKEN */
+  /**
+   * SET
+   */
+  public set accessToken(token: string) {
+    sessionStorage.setItem('accessToken', token);
+  }
+
+  /**
+   * GET
+   */
+  public get accessToken(): string {
+    return sessionStorage.getItem('accessToken') ?? '';
+  }
 
   /**
    * METHODS
@@ -49,18 +43,6 @@ export class AuthService {
    */
   private removeUserFromSessionStorage(): void {
     sessionStorage.clear();
-  }
-
-  /**
-   * This method checks if the user is logged or not.
-   */
-  public checkUserLogged(): boolean {
-    const user: IUser = this.getUserFromSessionStorage();
-
-    if(Object.keys(user).length === 0)
-      return false;
-    else
-      return true;
   }
 
   /**
@@ -108,7 +90,6 @@ export class AuthService {
    * SIGN OUT Method.
    */
   public signOut(): void {
-    this.setIsLogged(false);
     this.removeUserFromSessionStorage();
     this._angularAuth.signOut();
     this._router.navigate(['/auth/login']);

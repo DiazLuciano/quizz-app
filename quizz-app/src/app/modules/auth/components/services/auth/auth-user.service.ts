@@ -34,8 +34,12 @@ export class AuthUserService {
       this._authService.signIn(preUser).then( res => {
 
         if(res.user.emailVerified) {
-          this._authService.setUserToSessionStorage(res.user);
-          this._router.navigate(['/admin']);
+
+          res.user.getIdToken().then((token: string) => {
+            this._authService.accessToken = token;
+            this._authService.setUserToSessionStorage(res.user);
+            this._router.navigate(['/admin']);
+          });
 
         } else {
 
