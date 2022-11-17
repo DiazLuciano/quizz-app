@@ -1,1 +1,28 @@
-<p>create-questionnaire works!</p>
+
+<form [formGroup]="form">
+  <div class="d-flex flex-column align-items-center">
+
+    <!-- Title -->
+    <mat-form-field class="w-75"  appearance="fill">
+      <mat-label>Title Questionnaire</mat-label>
+      <input matInput class="input-title" formControlName="title" required>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field class="w-75" appearance="fill">
+      <mat-label>Description Questionnaire</mat-label>
+      <textarea class="input-description"
+                matInput
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="8"
+                formControlName="description"
+                required></textarea>
+    </mat-form-field>
+
+    <!-- Action Buttons -->
+    <div>
+      <button class="me-3" mat-flat-button color="accent" (click)="saveData()" [disabled]="form.invalid">Save</button>
+      <button mat-flat-button color="primary" [disabled]="!canContinue" matStepperNext>Next</button>
+    </div>
+  </div>
+</form>

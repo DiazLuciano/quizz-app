@@ -8,6 +8,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListQuestionnaireComponent } from './components/list-questionnaire/list-questionnaire.component';
 import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { CreateQuestionsComponent } from './components/create-questions/create-questions.component';
+import { CreateComponent } from './components/create/create.component';
+import { ListQuestionsComponent } from './components/list-questions/list-questions.component';
 
 
 @NgModule({
@@ -18,6 +21,9 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
     ListQuestionnaireComponent,
     CreateQuestionnaireComponent,
     StatisticsComponent,
+    CreateQuestionsComponent,
+    CreateComponent,
+    ListQuestionsComponent,
   ],
   imports: [
     CommonModule,

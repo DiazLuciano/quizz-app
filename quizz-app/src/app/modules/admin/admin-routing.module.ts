@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { CreateQuestionnaireComponent } from './components/create-questionnaire/create-questionnaire.component';
 import { ListQuestionnaireComponent } from './components/list-questionnaire/list-questionnaire.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
+import { CreateComponent } from './components/create/create.component';
 
 const routes: Routes = [
   {
@@ -16,8 +14,8 @@ const routes: Routes = [
     }
   },
   {
-    path: 'create-questionnaire',
-    component: CreateQuestionnaireComponent,
+    path: 'create',
+    component: CreateComponent,
     pathMatch: 'full'
   },
   {
