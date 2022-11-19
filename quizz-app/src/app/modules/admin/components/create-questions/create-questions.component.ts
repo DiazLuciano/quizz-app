@@ -20,6 +20,7 @@ export class CreateQuestionsComponent {
   public max = 1000;
   public min = 0;
   public step = 50;
+  public sliderValue = 500;
 
   /* GETTERS */
   /*============================================================== */
@@ -102,6 +103,16 @@ export class CreateQuestionsComponent {
     });
   }
 
+  /**
+   * Add Question.
+   */
+  public addQuestion(): void {
+    console.log(this.form);
+  }
+
+  /**
+   * Save Data.
+   */
   public saveData(): void {
     this.setSecondForm(this.form);
     this.canContinue = true;
