@@ -15,4 +15,5 @@ export class DashboardService {
     const user: IUser = this._authService.getUserFromSessionStorage();
     return user.email;
   }
+
 }

@@ -9,7 +9,7 @@
   </mat-step>
 
   <!-- Step 2 -->
-  <mat-step>
+  <mat-step [stepControl]="secondForm">
     <ng-template matStepLabel>Data Questions</ng-template>
     <div class="w-100">
       <app-create-questions (secondForm)="setSecondForm($event)"></app-create-questions>

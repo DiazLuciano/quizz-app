@@ -7,13 +7,20 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent {
-  isLinear = true;
+  /** PROPERTIES */
+  public isLinear = true;
   public firstForm!: FormGroup;
   public secondForm!: FormGroup;
 
+  /**
+   * Constructor.
+   *
+   * @param formBuilder
+   */
   constructor(
     private formBuilder: FormBuilder
   ){
+
 
     // Data Questionnaire Form
     this.firstForm = this.formBuilder.group({
