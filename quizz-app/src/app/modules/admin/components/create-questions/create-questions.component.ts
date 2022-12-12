@@ -87,6 +87,7 @@ export class CreateQuestionsComponent {
 
   /* METHODS */
   /*============================================================== */
+
   /**
    * OUTPUT - Emits the Form.
    *
@@ -117,6 +118,9 @@ export class CreateQuestionsComponent {
     });
   }
 
+  /**
+   * This method resets the data form.
+   */
   public reset() {
     this.form.patchValue({
       title: '',
@@ -141,7 +145,10 @@ export class CreateQuestionsComponent {
     })
   }
 
-  public getAnswers(): Answer[] {
+  /**
+   * This method get the answers data from the form.
+   */
+  public getAnswersFromForm(): Answer[] {
 
     let listAnswers: Answer[] = [];
 
@@ -185,7 +192,13 @@ export class CreateQuestionsComponent {
     return listAnswers;
   }
 
-  public getQuestion(listAnswers: Answer[]): Question {
+  /**
+   * This method complete the Question variable with the form's data.
+   *
+   * @param listAnswers
+   * @returns An instance of Question with complete data.
+   */
+  public getQuestionWithCompleteData(listAnswers: Answer[]): Question {
 
     const question: Question = {
       title: this.form.get('title')?.value,
@@ -283,21 +296,15 @@ export class CreateQuestionsComponent {
       return;
     }
 
-    const listAnswers = this.getAnswers();
-    const question = this.getQuestion(listAnswers);
+    this.setSecondForm(this.form);
+
+    const listAnswers = this.getAnswersFromForm();
+    const question = this.getQuestionWithCompleteData(listAnswers);
 
     this._quizzService.addQuestion(question);
 
-    this.reset();
+    // this.reset(); esto resetea el form y no emite.
     console.log(this.form);
   }
 
-  /**
-   * Save Data.
-   */
-  public saveData(): void {
-    console.log(this.form)
-    this.setSecondForm(this.form);
-    this.canContinue = true;
-  }
 }

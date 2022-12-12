@@ -1,1 +1,32 @@
-<p>list-questions works!</p>
+<div class="d-flex flex-column align-items-center">
+    <div *ngFor="let question of listQuestions; let i = index" class="mb-3">
+        <mat-card class="w-75 justify-content-between">
+            <mat-card-title class="text-center" >{{ question.title }}</mat-card-title>
+        </mat-card>
+        <mat-card-content>
+        <div class="row">
+            <p><span class="badge badge-main">{{ question.seconds }}s</span></p>
+                <div class="col-6">
+                <p><span class="badge badge-main">{{ question.score }}pts</span></p>
+                </div>
+                <ul class="list-group">
+                <li *ngFor="let answer of question.listAnswers" [ngClass]="{ 'correct-answer': answer.isCorrect === true }" class="list-group-item">
+                    {{ answer.description }}
+                </li>
+                </ul>
+                <div class="mt-3">
+                <!-- <i class="fas fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="selectItemToDelete(i)"></i> -->
+                </div>
+            </div>
+        </mat-card-content>
+
+    </div>
+
+    <!-- SAVE BUTTON -->
+    <div class="mt-3 text-center" *ngIf="listQuestions.length > 0">
+        <div class="col-lg-12">
+            <button mat-flat-button class="btn btn-lg btn-finish" color="primary" (click)="createQuestionnaire()" type="submit" >FINISH</button>
+        </div>
+    </div>
+</div>
+

@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NotificationService } from '../../../../../core/services/notification/notification.service';
-import { CreateQuestionnaireService } from '../../services/create-questionnaire.service';
+import { QuizzService } from '../../services/quizz.service';
 
 @Component({
   selector: 'app-create-questionnaire',
@@ -25,7 +24,7 @@ export class CreateQuestionnaireComponent {
    */
   constructor(
     private fb: FormBuilder,
-    private _createQuestionnaire: CreateQuestionnaireService,
+    private _quizzService: QuizzService,
   ) {
     this.form = this.fb.group({
       title: ['', Validators.required],
@@ -37,8 +36,8 @@ export class CreateQuestionnaireComponent {
    * This method manages the data to save on Questionnaire item from session storage.
    */
   public addQuestionnaire(): void {
-    this._createQuestionnaire.titleQuizz = this.form.get('title')?.value;
-    this._createQuestionnaire.descriptionQuizz = this.form.get('description')?.value;
+    this._quizzService.titleQuizz = this.form.get('title')?.value;
+    this._quizzService.descriptionQuizz = this.form.get('description')?.value;
   }
 
 }

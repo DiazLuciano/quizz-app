@@ -34,3 +34,8 @@ a {
   cursor: pointer;
 }
 
+/* Badge */
+.badge-main {
+  background-color: #437385;
+  font-size: 12px;
+}

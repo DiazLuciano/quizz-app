@@ -10,6 +10,11 @@ import { NotificationService } from '../../../../core/services/notification/noti
 })
 export class QuizzService {
 
+  /**
+   * PROPERTIES
+   */
+  public titleQuizz: string = '';
+  public descriptionQuizz: string = ''
   private question$ = new Subject<Question>;
 
   constructor(
