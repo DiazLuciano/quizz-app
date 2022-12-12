@@ -21,8 +21,7 @@
 
     <!-- Action Buttons -->
     <div>
-      <button class="me-3" mat-flat-button color="accent" (click)="addQuestion()" [disabled]="form.invalid">Save</button>
-      <button mat-flat-button color="primary" [disabled]="!canContinue" matStepperNext>Next</button>
+      <button mat-flat-button color="primary" [disabled]="form.invalid" matStepperNext>Next</button>
     </div>
   </div>
 </form>

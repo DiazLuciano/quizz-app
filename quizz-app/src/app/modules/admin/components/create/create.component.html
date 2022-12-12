@@ -1,10 +1,10 @@
 <mat-stepper [linear]="isLinear" #stepper>
 
   <!-- Step 1 -->
-  <mat-step [stepControl]="firstForm">
+  <mat-step>
     <ng-template matStepLabel>Data Questionnaire</ng-template>
     <div class="w-100">
-      <app-create-questionnaire (firstForm)="setFirstForm($event)"></app-create-questionnaire>
+      <app-create-questionnaire></app-create-questionnaire>
     </div>
   </mat-step>
 

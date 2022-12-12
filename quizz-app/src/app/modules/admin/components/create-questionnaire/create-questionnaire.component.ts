@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationService } from '../../../../../core/services/notification/notification.service';
+import { CreateQuestionnaireService } from '../../services/create-questionnaire.service';
 
 @Component({
   selector: 'app-create-questionnaire',
@@ -11,24 +13,10 @@ export class CreateQuestionnaireComponent {
   /**
    * PROPERTIES
    */
-  public canContinue: boolean = false;
   public form: FormGroup;
-
-  /**
-   * OUTPUT - FormGroup
-   */
-  @Output() firstForm = new EventEmitter<FormGroup>();
 
   /* METHODS */
   /*============================================================== */
-  /**
-   * OUTPUT - Emits the Form.
-   *
-   * @param form An instance of FormGroup.
-   */
-  public setFirstForm(form: FormGroup) {
-    this.firstForm.emit(form);
-  }
 
   /**
    * Constructor.
@@ -36,7 +24,8 @@ export class CreateQuestionnaireComponent {
    * @param fb
    */
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _createQuestionnaire: CreateQuestionnaireService,
   ) {
     this.form = this.fb.group({
       title: ['', Validators.required],
@@ -47,27 +36,9 @@ export class CreateQuestionnaireComponent {
   /**
    * This method manages the data to save on Questionnaire item from session storage.
    */
-  public addQuestion(): void {
-
-    // if(this.form.invalid && this.allAnswersFalse()) {
-    //   return;
-    // }
-
-    // const
-    this.setFirstForm(this.form);
-    this.canContinue = true;
+  public addQuestionnaire(): void {
+    this._createQuestionnaire.titleQuizz = this.form.get('title')?.value;
+    this._createQuestionnaire.descriptionQuizz = this.form.get('description')?.value;
   }
 
-  public setOtherAnswersFalse(): void {
-
-  }
-
-  public thisAnswerIsCorrect(answer: string): void {
-    const answers = ['ans1', 'ans2', 'ans3', 'ans4'];
-
-    for (let index = 0; index < answers.length; index++) {
-      const element = answers[index];
-
-    }
-  }
 }

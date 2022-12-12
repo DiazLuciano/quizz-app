@@ -9,7 +9,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class CreateComponent {
   /** PROPERTIES */
   public isLinear = true;
-  public firstForm!: FormGroup;
   public secondForm!: FormGroup;
 
   /**
@@ -20,13 +19,6 @@ export class CreateComponent {
   constructor(
     private formBuilder: FormBuilder
   ){
-
-
-    // Data Questionnaire Form
-    this.firstForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required]
-    });
 
     // Questions & Answers Form
     this.secondForm = this.formBuilder.group({
@@ -50,11 +42,6 @@ export class CreateComponent {
         isCorrect: false
       }),
     });
-  }
-
-  public setFirstForm(form: FormGroup) {
-    this.firstForm = form;
-    console.log(this.firstForm)
   }
 
   public setSecondForm(form: FormGroup) {
