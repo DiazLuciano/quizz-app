@@ -20,7 +20,7 @@
                 <div class="mt-3">
                     <!-- Delete Question Button -->
                     <button mat-button (click)="openDialog()">
-                        <i class="fas fa-trash"></i>
+                        <i class="fas fa-trash" (click)="setIndexToDeleteItem(i)"></i>
                     </button>
                 </div>
             </mat-card-content>

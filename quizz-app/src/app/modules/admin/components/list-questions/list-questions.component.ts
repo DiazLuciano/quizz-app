@@ -22,6 +22,8 @@ export class ListQuestionsComponent implements OnDestroy {
   public exitAnimationDuration: string = '0ms';
   public confirmation: Subscription;
 
+  public indexSelectedToDelete: number = 0;
+
   constructor(
     private _quizzService: QuizzService,
     private _dialogService: DialogService,
@@ -35,7 +37,11 @@ export class ListQuestionsComponent implements OnDestroy {
     // this.questionnaireDescription = this._quizzService.descriptionQuizz;
     // this.user = JSON.parse(sessionStorage.getItem('user') || '{}');
 
-    this.confirmation = this._dialogService.getConfirmation().subscribe( data => console.log(data))
+    this.confirmation = this._dialogService.getConfirmation().subscribe( data => {
+      if(data) {
+        this.deleteItem();
+      }
+    })
    }
 
   /* LIFECYCLE HOOKS */
@@ -53,6 +59,14 @@ export class ListQuestionsComponent implements OnDestroy {
 
   public createQuestionnaire(): void {
 
+  }
+
+  public setIndexToDeleteItem(index: number): void {
+    this.indexSelectedToDelete = index;
+  }
+
+  public deleteItem(): void {
+    this.listQuestions.splice(this.indexSelectedToDelete, 1);
   }
 
   /**
