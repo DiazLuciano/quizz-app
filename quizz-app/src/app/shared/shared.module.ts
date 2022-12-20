@@ -4,11 +4,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 
-
-
 @NgModule({
   declarations: [
-    SpinnerComponent
+    SpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -16,11 +14,11 @@ import { MaterialModule } from './material/material.module';
     ReactiveFormsModule
   ],
   exports: [
+    MaterialModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     SpinnerComponent,
-    MaterialModule
   ]
 })
 export class SharedModule { }

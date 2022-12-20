@@ -37,5 +37,5 @@ a {
 /* Badge */
 .badge-main {
   background-color: #437385;
-  font-size: 12px;
+  font-size: 15px !important;
 }

@@ -7,6 +7,10 @@
   margin-top: 16px;
 }
 
+.text-answers {
+  text-transform: capitalize;
+}
+
 /* BUTTONS */
 .btn:hover{
   background-color: #69f0ae;

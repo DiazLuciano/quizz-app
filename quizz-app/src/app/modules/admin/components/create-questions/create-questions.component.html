@@ -63,7 +63,7 @@
         <div formGroupName="answer1" class="col-lg-11">
           <mat-form-field class="w-100">
             <mat-label>Answer 1</mat-label>
-            <input formControlName="title" matInput #message1 maxlength="50" placeholder="Write answer 1..." required>
+            <input class="text-answers" formControlName="title" matInput #message1 maxlength="50" placeholder="Write answer 1..." required>
             <mat-hint align="end">{{message1.value.length}} / 50</mat-hint>
           </mat-form-field>
         </div>
@@ -77,7 +77,7 @@
         <div formGroupName="answer2" class="col-lg-11">
           <mat-form-field class="w-100">
             <mat-label>Answer 2</mat-label>
-            <input formControlName="title" matInput #message2 maxlength="50" placeholder="Write answer 2..." required>
+            <input class="text-answers" formControlName="title" matInput #message2 maxlength="50" placeholder="Write answer 2..." required>
             <mat-hint align="end">{{message2.value.length}} / 50</mat-hint>
           </mat-form-field>
         </div>
@@ -94,7 +94,7 @@
         <div formGroupName="answer3" class="col-lg-11">
           <mat-form-field class="w-100">
             <mat-label>Answer 3</mat-label>
-            <input formControlName="title" matInput #message3 maxlength="50" placeholder="Write answer 3...">
+            <input class="text-answers" formControlName="title" matInput #message3 maxlength="50" placeholder="Write answer 3...">
             <mat-hint align="end">{{message3.value.length}} / 50</mat-hint>
           </mat-form-field>
         </div>
@@ -108,7 +108,7 @@
         <div formGroupName="answer4" class="col-lg-11">
           <mat-form-field class="w-100">
             <mat-label>Answer 4</mat-label>
-            <input formControlName="title" matInput #message4 maxlength="50" placeholder="Write answer 4...">
+            <input class="text-answers" formControlName="title" matInput #message4 maxlength="50" placeholder="Write answer 4...">
             <mat-hint align="end">{{message4.value.length}} / 50</mat-hint>
           </mat-form-field>
         </div>
@@ -126,7 +126,7 @@
     <mat-divider class="mt-5 w-100" inset></mat-divider>
 
     <!-- LIST ADDED QUESTIONS -->
-    <div class="mt-5 col-lg-12">
+    <div class="mt-5 w-100">
       <app-list-questions></app-list-questions>
     </div>
   </div>
