@@ -23,3 +23,7 @@
   .fa-trash:hover {
     color: rgb(224, 83, 83);
   }
+  .list-group {
+    text-transform: capitalize;
+    font-size: 16px;
+  }
