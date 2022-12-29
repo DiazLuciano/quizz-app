@@ -26,6 +26,7 @@
     "animate.css": "^4.1.1",
     "bootstrap": "^5.2.2",
     "firebase": "^9.12.1",
+    "nanoid": "^4.0.0",
     "ngx-toastr": "^15.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

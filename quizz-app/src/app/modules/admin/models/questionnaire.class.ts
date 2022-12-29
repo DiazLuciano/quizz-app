@@ -6,9 +6,9 @@ export class Questionnaire {
   title: string;
   description: string;
   code: string;
-  numberQuestions: number;
+  numberQuestions?: number;
   createDate: Date;
-  listQuestions: Question[];
+  listQuestions?: Question[];
 
   constructor(
     uid: string,

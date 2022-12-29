@@ -1,7 +1,7 @@
 <mat-stepper [linear]="isLinear" #stepper>
 
   <!-- Step 1 -->
-  <mat-step>
+  <mat-step [stepControl]="firstForm">
     <ng-template matStepLabel>Data Questionnaire</ng-template>
     <div class="w-100">
       <app-create-questionnaire></app-create-questionnaire>
@@ -12,17 +12,28 @@
   <mat-step [stepControl]="secondForm">
     <ng-template matStepLabel>Data Questions</ng-template>
     <div class="w-100">
-      <app-create-questions (secondForm)="setSecondForm($event)"></app-create-questions>
+      <app-create-questions ></app-create-questions>
+    </div>
+    <div class="text-center">
+      <button class="me-3" mat-stroked-button matStepperPrevious>Back</button>
+      <button mat-flat-button color="primary" matStepperNext>Next</button>
     </div>
   </mat-step>
 
   <!-- Step Final -->
   <mat-step>
     <ng-template matStepLabel>Review</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
+    <form >
+      <div class="w-100">
+        <p>You are now done.</p>
+      </div>
+      <div class="text-center">
+        <button mat-flat-button  class="btn btn-lg btn-finish" color="primary" (click)="createQuestionnaire()" >Create Quizz</button>
+      </div>
+      <div class="text-center">
+        <button class="me-3" mat-stroked-button matStepperPrevious>Back</button>
+        <button mat-flat-button color="warn" (click)="stepper.reset()">Reset</button>
+      </div>
+    </form>
   </mat-step>
 </mat-stepper>

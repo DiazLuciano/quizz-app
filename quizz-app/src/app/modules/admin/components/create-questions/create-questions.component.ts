@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Answer } from '../../models/answer.class';
 import { Question } from '../../models/question.class';
 import { QuizzService } from '../../services/quizz.service';
+import { NotificationService } from '../../../../../core/services/notification/notification.service';
 
 @Component({
   selector: 'app-create-questions',
@@ -10,8 +11,6 @@ import { QuizzService } from '../../services/quizz.service';
   styleUrls: ['./create-questions.component.css']
 })
 export class CreateQuestionsComponent {
-
-
   /**
    * PROPERTIES
    */
@@ -26,18 +25,13 @@ export class CreateQuestionsComponent {
   public sliderValue = 500;
 
   /**
-   * OUTPUT
-   * Form's declaretion.
-   */
-  @Output() secondForm = new EventEmitter<FormGroup>();
-
-  /**
    * Constructor.
    *
    * @param formBuilder
    */
    constructor(
     private _quizzService: QuizzService,
+    private _notificationService: NotificationService,
     private formBuilder: FormBuilder
   ) {
     // Form
@@ -87,15 +81,6 @@ export class CreateQuestionsComponent {
 
   /* METHODS */
   /*============================================================== */
-
-  /**
-   * OUTPUT - Emits the Form.
-   *
-   * @param form An instance of FormGroup.
-   */
-  public setSecondForm(form: FormGroup) {
-    this.secondForm.emit(form);
-  }
 
   /**
    * Method manages the second's value from the minus/plus buttons.
@@ -293,10 +278,9 @@ export class CreateQuestionsComponent {
   public addQuestion(): void {
 
     if(this.form.invalid || this.allAnswersFalses()) {
+      this._notificationService.showError('', 'Complete all the fields')
       return;
     }
-
-    this.setSecondForm(this.form);
 
     const listAnswers = this.getAnswersFromForm();
     const question = this.getQuestionWithCompleteData(listAnswers);

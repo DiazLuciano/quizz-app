@@ -5,6 +5,9 @@ import { Question } from '../models/question.class';
 import { Questionnaire } from '../models/questionnaire.class';
 import { NotificationService } from '../../../../core/services/notification/notification.service';
 
+// Nano ID - It generates the Quizz Code.
+import { nanoid } from 'nanoid'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,9 +16,18 @@ export class QuizzService {
   /**
    * PROPERTIES
    */
+
+  /* First Data Questionnaire */
+  public uid: string = '';
   public titleQuizz: string = '';
-  public descriptionQuizz: string = ''
+  public descriptionQuizz: string = '';
+
+  /* Second Data Questionnaire */
+  public numberQuestions: number = 0;
+  public listQuestions!: Question[];
+
   private question$ = new Subject<Question>;
+  public questionnaire!: Questionnaire;
 
   constructor(
     private _fireStore: AngularFirestore,
@@ -58,4 +70,64 @@ export class QuizzService {
     return this._fireStore.collection('answers').doc(id).delete();
   }
 
+  public createQuizz(): void {
+
+    if(this.validateData()) {
+
+      this.setDataQuizz();
+
+    } else {
+      // TODO - Return false
+    }
+  }
+
+  /* HELPER FUNCTIONS */
+
+  public showSuccessNotification(): void {
+    this._notificationService.showInfo('', 'Saved');
+  }
+
+  /**
+   * This method creates a random code using nano package.
+   *
+   * @param length The length of the string code.
+   * @returns The generated code.
+   */
+  public generateCode(length: number): string {
+    return nanoid(length).toUpperCase();
+  }
+
+  /**
+   * This method manages the validation of the data quizz.
+   *
+   * @returns True: If the data is not empty.
+   * False: If any field is empty.
+   */
+  public validateData(): boolean {
+    if(
+      this.uid !== '',
+      this.titleQuizz !== '',
+      this.descriptionQuizz !== '',
+      this.numberQuestions !== 0,
+      this.listQuestions.length > 0
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * This method sets the data to an instance of Questionnaire interface.
+   */
+  public setDataQuizz(): void {
+    this.questionnaire = {
+      uid: this.uid,
+      title: this.titleQuizz,
+      description: this.descriptionQuizz,
+      numberQuestions: this.numberQuestions,
+      listQuestions: this.listQuestions,
+      code: this.generateCode(6),
+      createDate: new Date()
+    }
+  }
 }

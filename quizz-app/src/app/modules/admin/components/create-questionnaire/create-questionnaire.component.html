@@ -20,8 +20,9 @@
     </mat-form-field>
 
     <!-- Action Buttons -->
-    <div>
-      <button mat-flat-button color="primary" [disabled]="form.invalid" matStepperNext>Next</button>
+    <div class="text-center">
+      <button mat-flat-button color="accent" class="me-3" (click)="addQuestionnaire()" [disabled]="form.invalid">Save</button>
+      <button mat-flat-button color="primary" matStepperNext>Next</button>
     </div>
   </div>
 </form>
