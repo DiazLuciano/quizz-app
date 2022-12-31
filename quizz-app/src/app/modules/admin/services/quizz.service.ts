@@ -40,6 +40,7 @@ export class QuizzService {
 
   public addQuestion(question: Question) {
     this.question$.next(question);
+    this._notificationService.showInfo('', 'Added Question!')
   }
 
   public getAddedQuestion(): Observable<Question> {
@@ -75,9 +76,11 @@ export class QuizzService {
     if(this.validateData()) {
 
       this.setDataQuizz();
+      console.log(this.questionnaire)
 
     } else {
       // TODO - Return false
+      console.log(this.questionnaire)
     }
   }
 
@@ -105,10 +108,10 @@ export class QuizzService {
    */
   public validateData(): boolean {
     if(
-      this.uid !== '',
-      this.titleQuizz !== '',
-      this.descriptionQuizz !== '',
-      this.numberQuestions !== 0,
+      this.uid !== '' &&
+      this.titleQuizz !== '' &&
+      this.descriptionQuizz !== '' &&
+      this.numberQuestions !== 0 &&
       this.listQuestions.length > 0
     ) {
       return true;

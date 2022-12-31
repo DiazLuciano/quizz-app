@@ -31,9 +31,10 @@
 
     <!-- SAVE BUTTON -->
     <div class="mt-3 text-center" *ngIf="listQuestions.length > 0">
-        <div class="col-lg-12">
-            <button mat-flat-button class="btn btn-lg btn-finish" color="primary" (click)="createQuestionnaire()" type="submit" >FINISH</button>
-        </div>
+        <div class="text-center">
+            <button class="me-3" mat-stroked-button matStepperPrevious>Back</button>
+            <button mat-flat-button (click)="createQuestionnaire()" type="submit" color="accent" matStepperNext>Save</button>
+          </div>
     </div>
 </div>
 

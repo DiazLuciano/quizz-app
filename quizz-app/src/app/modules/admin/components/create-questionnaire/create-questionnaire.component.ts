@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IUser } from 'src/core/auth/interfaces/auth.interface';
 import { QuizzService } from '../../services/quizz.service';
@@ -9,12 +9,12 @@ import { QuizzService } from '../../services/quizz.service';
   styleUrls: ['./create-questionnaire.component.css']
 })
 export class CreateQuestionnaireComponent {
-
   /**
    * PROPERTIES
-   */
-  public form: FormGroup;
-  public user: IUser;
+  */
+ public form: FormGroup;
+ public user: IUser;
+ @Output() public nextStep: EventEmitter<boolean> = new EventEmitter();
 
   /* METHODS */
   /*============================================================== */
@@ -42,6 +42,7 @@ export class CreateQuestionnaireComponent {
    * This method manages the data to save on Questionnaire item from session storage.
    */
   public addQuestionnaire(): void {
+    this.nextStep.emit(true);
     this._quizzService.uid = this.user.uid;
     this._quizzService.titleQuizz = this.form.get('title')?.value;
     this._quizzService.descriptionQuizz = this.form.get('description')?.value;

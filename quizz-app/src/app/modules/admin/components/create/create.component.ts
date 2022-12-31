@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 import { IUser } from 'src/core/auth/interfaces/auth.interface';
 import { Questionnaire } from '../../models/questionnaire.class';
 import { QuizzService } from '../../services/quizz.service';
@@ -15,7 +16,6 @@ export class CreateComponent {
   public firstForm!: FormGroup;
   public secondForm!: FormGroup;
   public questionnaireForm! : FormGroup;
-
 
   /**
    * Constructor.
@@ -51,8 +51,17 @@ export class CreateComponent {
     });
   }
 
+  /* METHODS */
+  /*============================================================== */
+
   public createQuestionnaire(): void {
     this._quizzService.createQuizz()
+  }
+
+  public next(canContinue: boolean, stepper: MatStepper): void {
+    if(canContinue) {
+      stepper.next();
+    }
   }
 
 }

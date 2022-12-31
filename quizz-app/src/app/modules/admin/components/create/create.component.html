@@ -4,7 +4,7 @@
   <mat-step [stepControl]="firstForm">
     <ng-template matStepLabel>Data Questionnaire</ng-template>
     <div class="w-100">
-      <app-create-questionnaire></app-create-questionnaire>
+      <app-create-questionnaire (nextStep)="next($event, stepper)"></app-create-questionnaire>
     </div>
   </mat-step>
 
@@ -12,12 +12,9 @@
   <mat-step [stepControl]="secondForm">
     <ng-template matStepLabel>Data Questions</ng-template>
     <div class="w-100">
-      <app-create-questions ></app-create-questions>
+      <app-create-questions (nextStep)="next($event, stepper)"></app-create-questions>
     </div>
-    <div class="text-center">
-      <button class="me-3" mat-stroked-button matStepperPrevious>Back</button>
-      <button mat-flat-button color="primary" matStepperNext>Next</button>
-    </div>
+
   </mat-step>
 
   <!-- Step Final -->

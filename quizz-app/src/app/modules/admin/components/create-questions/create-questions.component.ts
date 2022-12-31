@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Answer } from '../../models/answer.class';
 import { Question } from '../../models/question.class';
@@ -16,6 +16,7 @@ export class CreateQuestionsComponent {
    */
   public canContinue: boolean = false;
   public form: FormGroup;
+  @Output() public nextStep: EventEmitter<boolean> = new EventEmitter();
 
   /** Slider Properties */
   public disabled = false;
@@ -286,9 +287,10 @@ export class CreateQuestionsComponent {
     const question = this.getQuestionWithCompleteData(listAnswers);
 
     this._quizzService.addQuestion(question);
+  }
 
-    // this.reset(); esto resetea el form y no emite.
-    console.log(this.form);
+  public saveQuestions(): void {
+    this.nextStep.emit(true);
   }
 
 }

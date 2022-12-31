@@ -43,7 +43,10 @@ import { GlobalErrorHandlerService } from '../core/services/error/global-error-h
     CoreModule,
 
     // Toastr
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+    }),
 
     // Firebase
     AngularFireModule.initializeApp(environment.firebase),

@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/shared/material/dialog/dialog.component';
 import { Question } from '../../models/question.class';
@@ -23,6 +23,7 @@ export class ListQuestionsComponent implements OnDestroy {
   public confirmation: Subscription;
 
   public indexSelectedToDelete: number = 0;
+  @Output() public nextStep: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private _quizzService: QuizzService,
@@ -58,7 +59,10 @@ export class ListQuestionsComponent implements OnDestroy {
   /*============================================================== */
 
   public createQuestionnaire(): void {
-
+    this._quizzService.listQuestions = this.listQuestions;
+    this._quizzService.numberQuestions = this.listQuestions.length;
+    this._quizzService.createQuizz();
+    this.nextStep.emit(true);
   }
 
   public setIndexToDeleteItem(index: number): void {
