@@ -114,19 +114,15 @@ export class CreateQuestionsComponent {
       points: 500,
       answer1: {
         title: '',
-        isCorrect: false
       },
       answer2: {
         title: '',
-        isCorrect: false
       },
       answer3: {
         title: '',
-        isCorrect: false
       },
       answer4: {
         title: '',
-        isCorrect: false
       }
     })
   }
@@ -287,6 +283,8 @@ export class CreateQuestionsComponent {
     const question = this.getQuestionWithCompleteData(listAnswers);
 
     this._quizzService.addQuestion(question);
+
+    this.reset();
   }
 
   public saveQuestions(): void {

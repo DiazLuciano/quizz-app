@@ -10,3 +10,17 @@
 .btn-finish:hover{
   background-color: #7b1fa2;
 }
+
+.correct-answer {
+  background-color: rgb(53 201 98);
+  color: #fff;
+  font-size: 17px;
+}
+.card {
+  background-color: #F8F8F5;
+  text-transform: capitalize;
+}
+.list-group {
+  text-transform: capitalize;
+  font-size: 16px;
+}

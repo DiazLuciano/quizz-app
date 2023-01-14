@@ -2,7 +2,6 @@
     "table": {
         "title": "Title",
         "numberQuestions": "Num. Questions",
-        "code": "Code",
-        "actions": "Actions"
+        "code": "Code"
     }
 }

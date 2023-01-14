@@ -44,7 +44,7 @@ import { GlobalErrorHandlerService } from '../core/services/error/global-error-h
 
     // Toastr
     ToastrModule.forRoot({
-      timeOut: 2000,
+      timeOut: 3000,
       positionClass: 'toast-bottom-right',
     }),
 
@@ -52,6 +52,8 @@ import { GlobalErrorHandlerService } from '../core/services/error/global-error-h
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     HttpClientModule,
+
+    // Transloco
     TranslocoRootModule
   ],
   providers: [

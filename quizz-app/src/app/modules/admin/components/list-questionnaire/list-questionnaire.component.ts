@@ -1,42 +1,84 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable } from '@firebase/util';
+import { Subscription } from 'rxjs';
+import { IUser } from 'src/core/auth/interfaces/auth.interface';
+import { AuthService } from 'src/core/auth/services/auth/auth.service';
+import { NotificationService } from 'src/core/services/notification/notification.service';
+import { Questionnaire } from '../../models/questionnaire.class';
+import { QuizzService } from '../../services/quizz.service';
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  title: string;
+  numberQuestions: number;
+  code: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 @Component({
   selector: 'app-list-questionnaire',
   templateUrl: './list-questionnaire.component.html',
   styleUrls: ['./list-questionnaire.component.css']
 })
-export class ListQuestionnaireComponent implements OnInit {
+export class ListQuestionnaireComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-dataSource = ELEMENT_DATA;
-clickedRows = new Set<PeriodicElement>();
-  /**
-   * Properties.
-   */
+  public displayedColumns: string[] = ['title', 'numberQuestions', 'code', 'actions'];
+  public clickedRows = new Set<PeriodicElement>();
+
+  /** Properties */
   public loading: boolean = false;
+  public user: IUser;
+  public dataSource = new MatTableDataSource<Questionnaire>();
+  public idQuestionnaire: string = '';
+  public subscription: Subscription = new Subscription();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private _quizzService: QuizzService,
+    private _authService: AuthService,
+    private _notificationService: NotificationService
+  ) {
+    this.user = this._authService.getUserFromSessionStorage();
   }
 
+  ngOnInit(): void {
+    this.loading = true;
+    this.getQuestionnaires();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  public getQuestionnaires(): void {
+
+
+    let listQuestionnaires: Questionnaire[] = [];
+    this.subscription = this._quizzService.getQuestionnairesByIdUser(this.user.uid).subscribe( data => {
+
+      // Push the items to the array.
+      data.forEach( (ques: any) => {
+        listQuestionnaires.push(
+          {
+            id: ques.payload.doc.id,
+            ...ques.payload.doc.data()
+          }
+          );
+
+      });
+
+      this.dataSource.data = listQuestionnaires;
+      // Set the loader to false.
+      this.loading = false;
+
+    }, error => {
+
+      console.log(error);
+      this._notificationService.showError("We couldn't show the questionnaires data','Error");
+      this.loading = false;
+    });
+
+  }
+
+  public selectItemToDelete(id: string): void {
+    this.idQuestionnaire = id;
+  }
 
 }

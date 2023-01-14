@@ -11,6 +11,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { CreateQuestionsComponent } from './components/create-questions/create-questions.component';
 import { CreateComponent } from './components/create/create.component';
 import { ListQuestionsComponent } from './components/list-questions/list-questions.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ListQuestionsComponent } from './components/list-questions/list-questio
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslocoModule
   ]
 })
 export class AdminModule { }

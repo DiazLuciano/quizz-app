@@ -4,6 +4,8 @@ import { MatStepper } from '@angular/material/stepper';
 import { IUser } from 'src/core/auth/interfaces/auth.interface';
 import { Questionnaire } from '../../models/questionnaire.class';
 import { QuizzService } from '../../services/quizz.service';
+import { Observable } from 'rxjs';
+import { Question } from '../../models/question.class';
 
 @Component({
   selector: 'app-create',
@@ -16,6 +18,12 @@ export class CreateComponent {
   public firstForm!: FormGroup;
   public secondForm!: FormGroup;
   public questionnaireForm! : FormGroup;
+
+
+  /** Questionnaire Properties */
+  public titleQuizz: string = '';
+  public descriptionQuizz: string = '';
+  public listQuestions: Question[] = [];
 
   /**
    * Constructor.
@@ -60,6 +68,12 @@ export class CreateComponent {
 
   public next(canContinue: boolean, stepper: MatStepper): void {
     if(canContinue) {
+
+      this.titleQuizz = this._quizzService.titleQuizz;
+      this.descriptionQuizz = this._quizzService.descriptionQuizz;
+
+      if(this._quizzService.listQuestions?.length > 0) this.listQuestions = this._quizzService.listQuestions;
+
       stepper.next();
     }
   }

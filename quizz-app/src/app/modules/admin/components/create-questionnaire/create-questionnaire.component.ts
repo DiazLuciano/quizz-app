@@ -42,11 +42,11 @@ export class CreateQuestionnaireComponent {
    * This method manages the data to save on Questionnaire item from session storage.
    */
   public addQuestionnaire(): void {
-    this.nextStep.emit(true);
     this._quizzService.uid = this.user.uid;
     this._quizzService.titleQuizz = this.form.get('title')?.value;
     this._quizzService.descriptionQuizz = this.form.get('description')?.value;
     this._quizzService.showSuccessNotification();
+    this.nextStep.emit(true);
   }
 
 }

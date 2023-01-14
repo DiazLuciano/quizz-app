@@ -34,10 +34,6 @@ export class ListQuestionsComponent implements OnDestroy {
       this.listQuestions.push(data);
     });
 
-    // this.questionnaireTitle = this._quizzService.titleQuizz;
-    // this.questionnaireDescription = this._quizzService.descriptionQuizz;
-    // this.user = JSON.parse(sessionStorage.getItem('user') || '{}');
-
     this.confirmation = this._dialogService.getConfirmation().subscribe( data => {
       if(data) {
         this.deleteItem();
@@ -61,7 +57,6 @@ export class ListQuestionsComponent implements OnDestroy {
   public createQuestionnaire(): void {
     this._quizzService.listQuestions = this.listQuestions;
     this._quizzService.numberQuestions = this.listQuestions.length;
-    this._quizzService.createQuizz();
     this.nextStep.emit(true);
   }
 

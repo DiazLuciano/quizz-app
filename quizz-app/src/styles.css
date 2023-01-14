@@ -39,3 +39,15 @@ a {
   background-color: #437385;
   font-size: 15px !important;
 }
+
+/* FONTS */
+.quizz-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+.quizz-description {
+  font-size: 24px;
+}
+.capital {
+  text-transform: capitalize;
+}

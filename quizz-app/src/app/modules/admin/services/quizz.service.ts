@@ -7,6 +7,7 @@ import { NotificationService } from '../../../../core/services/notification/noti
 
 // Nano ID - It generates the Quizz Code.
 import { nanoid } from 'nanoid'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,8 @@ export class QuizzService {
 
   constructor(
     private _fireStore: AngularFirestore,
-    private _notificationService: NotificationService
+    private _notificationService: NotificationService,
+    private _router: Router
   ) { }
 
   public showError(): void {
@@ -76,11 +78,19 @@ export class QuizzService {
     if(this.validateData()) {
 
       this.setDataQuizz();
+      this.createQuestionnaire(this.questionnaire).then( () => {
+
+        this._notificationService.showSuccess('Quizz has been created', 'Success!');
+        this._router.navigate(['/admin']);
+
+      }).catch( err => {
+        console.log(err);
+        this._notificationService.showError('An error has occurred. It was not possible to save the quizz.', 'Ups!')
+      })
       console.log(this.questionnaire)
 
     } else {
-      // TODO - Return false
-      console.log(this.questionnaire)
+      this._notificationService.showError('You must complete all the required fields', 'Incomplete Data');
     }
   }
 
