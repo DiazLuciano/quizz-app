@@ -17,3 +17,22 @@
 .demo-row-is-clicked {
   font-weight: bold;
 }
+
+/* ICONS */
+.fa-solid {
+  cursor: pointer;
+  font-size: 25px;
+  margin: 0px 2px
+}
+.fa-chart-line {
+  color: darkcyan;
+}
+.fa-trash-can {
+ color: rgb(187, 22, 22);
+}
+.fa-plus {
+  font-size: 17px;
+}
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bs-primary);
+}

@@ -12,6 +12,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     DialogComponent
@@ -29,7 +30,8 @@ import { DialogComponent } from './dialog/dialog.component';
     MatStepperModule,
     MatSliderModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   exports: [
     MatCardModule,
@@ -45,6 +47,7 @@ import { DialogComponent } from './dialog/dialog.component';
     MatSliderModule,
     MatRadioModule,
     MatDialogModule,
+    MatTooltipModule,
     DialogComponent
   ]
 })

@@ -1,12 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Observable } from '@firebase/util';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { IUser } from 'src/core/auth/interfaces/auth.interface';
 import { AuthService } from 'src/core/auth/services/auth/auth.service';
 import { NotificationService } from 'src/core/services/notification/notification.service';
 import { Questionnaire } from '../../models/questionnaire.class';
 import { QuizzService } from '../../services/quizz.service';
+import { DialogComponent } from 'src/app/shared/material/dialog/dialog.component';
+import { DialogService } from 'src/core/services/dialog/dialog.service';
 export interface PeriodicElement {
   title: string;
   numberQuestions: number;
@@ -24,16 +26,25 @@ export class ListQuestionnaireComponent implements OnInit, OnDestroy {
   public clickedRows = new Set<PeriodicElement>();
 
   /** Properties */
+
+  /** Dialog Properties */
+  public showDialog: boolean = false;
+  public enterAnimationDuration: string = '0ms';
+  public exitAnimationDuration: string = '0ms';
+
   public loading: boolean = false;
   public user: IUser;
   public dataSource = new MatTableDataSource<Questionnaire>();
   public idQuestionnaire: string = '';
   public subscription: Subscription = new Subscription();
+  public confirmation: Subscription = new Subscription();
 
   constructor(
+    public dialog: MatDialog,
     private _quizzService: QuizzService,
     private _authService: AuthService,
-    private _notificationService: NotificationService
+    private _notificationService: NotificationService,
+    private _dialogService: DialogService
   ) {
     this.user = this._authService.getUserFromSessionStorage();
   }
@@ -41,6 +52,13 @@ export class ListQuestionnaireComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loading = true;
     this.getQuestionnaires();
+
+    this.confirmation = this._dialogService.getConfirmation().subscribe( data => {
+      if(data) {
+        this.deleteItem();
+        this.getQuestionnaires();
+      }
+    })
   }
 
   ngOnDestroy(): void {
@@ -77,8 +95,40 @@ export class ListQuestionnaireComponent implements OnInit, OnDestroy {
 
   }
 
+  /**
+   * This method trigger the angular material dialog modal.
+   *
+   * @param enterAnimationDuration A string that represents the delay to SHOW the dialog.
+   * @param exitAnimationDuration A string that represents the delay to CLOSE the dialog.
+   */
+  public openDialog(enterAnimationDuration: string = this.enterAnimationDuration, exitAnimationDuration: string = this.exitAnimationDuration): void {
+    this.dialog.open(DialogComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
   public selectItemToDelete(id: string): void {
     this.idQuestionnaire = id;
+    this.openDialog();
+  }
+
+  public deleteItem(): void {
+    this.loading = true;
+
+    this._quizzService.deleteQuestionnaire(this.idQuestionnaire).then( () => {
+
+      this._notificationService.showSuccess('', 'Questionnaire Deleted');
+
+    }).catch( err => {
+
+      console.log(err);
+      this._notificationService.showError('This questionnaire could not be deleted.', 'Error');
+
+    });
+
+    this.loading = false;
   }
 
 }
