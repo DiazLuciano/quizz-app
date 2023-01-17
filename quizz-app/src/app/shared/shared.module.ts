@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
+import { EmptyMsgComponent } from './empty-msg/empty-msg.component';
 
 @NgModule({
   declarations: [
     SpinnerComponent,
+    EmptyMsgComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports: [
     MaterialModule,
@@ -19,6 +22,7 @@ import { MaterialModule } from './material/material.module';
     FormsModule,
     ReactiveFormsModule,
     SpinnerComponent,
+    EmptyMsgComponent,
   ]
 })
 export class SharedModule { }

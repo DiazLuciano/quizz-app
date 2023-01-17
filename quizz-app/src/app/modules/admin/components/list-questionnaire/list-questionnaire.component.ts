@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -9,12 +9,8 @@ import { Questionnaire } from '../../models/questionnaire.class';
 import { QuizzService } from '../../services/quizz.service';
 import { DialogComponent } from 'src/app/shared/material/dialog/dialog.component';
 import { DialogService } from 'src/core/services/dialog/dialog.service';
-export interface PeriodicElement {
-  title: string;
-  numberQuestions: number;
-  code: number;
-}
-
+import { TranslocoService } from '@ngneat/transloco';
+import { Observable } from '@firebase/util';
 @Component({
   selector: 'app-list-questionnaire',
   templateUrl: './list-questionnaire.component.html',
@@ -23,54 +19,90 @@ export interface PeriodicElement {
 export class ListQuestionnaireComponent implements OnInit, OnDestroy {
 
   public displayedColumns: string[] = ['title', 'numberQuestions', 'code', 'actions'];
-  public clickedRows = new Set<PeriodicElement>();
 
   /** Properties */
+  public loading: boolean = false;
+  public noResults: boolean = true;
+  public titleEmptyMsg!: string;
+  public user: IUser;
+  public idQuestionnaire: string = '';
 
   /** Dialog Properties */
   public showDialog: boolean = false;
   public enterAnimationDuration: string = '0ms';
   public exitAnimationDuration: string = '0ms';
 
-  public loading: boolean = false;
-  public user: IUser;
+  /** Table Properties */
   public dataSource = new MatTableDataSource<Questionnaire>();
-  public idQuestionnaire: string = '';
-  public subscription: Subscription = new Subscription();
-  public confirmation: Subscription = new Subscription();
 
+  /** Subscriptions */
+  public subscriptionQuizz: Subscription = new Subscription();
+  public subscriptionTranslation: Subscription = new Subscription();
+  public subscriptionConfirmation: Subscription = new Subscription();
+
+  /**
+   * Constructor.
+   *
+   * @param dialog
+   * @param _quizzService
+   * @param _authService
+   * @param _notificationService
+   * @param _dialogService
+   * @param _translocoService
+   */
   constructor(
     public dialog: MatDialog,
     private _quizzService: QuizzService,
     private _authService: AuthService,
     private _notificationService: NotificationService,
-    private _dialogService: DialogService
+    private _dialogService: DialogService,
+    private _translocoService: TranslocoService
   ) {
     this.user = this._authService.getUserFromSessionStorage();
   }
 
-  ngOnInit(): void {
-    this.loading = true;
-    this.getQuestionnaires();
+  /**
+   * HOOKS SECTION
+   */
 
-    this.confirmation = this._dialogService.getConfirmation().subscribe( data => {
+  /**
+   * OnInit.
+   */
+  public ngOnInit(): void {
+    // Get quizzes
+    this.getQuestionnaires();
+    // Get translation
+    this.subscriptionTranslation = this._translocoService.selectTranslate('listQuestionnaires.emptyMsgTitle')
+                         .subscribe(value => this.titleEmptyMsg = value);
+    // Check delete item
+    this.subscriptionConfirmation = this._dialogService.getConfirmation().subscribe( data => {
       if(data) {
         this.deleteItem();
         this.getQuestionnaires();
       }
-    })
+    });
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  /**
+   * OnDestroy.
+   */
+  public ngOnDestroy(): void {
+    this.subscriptionQuizz.unsubscribe();
+    this.subscriptionTranslation.unsubscribe();
+    this.subscriptionConfirmation.unsubscribe();
   }
 
+  /**
+   * METHODS
+   */
+
+  /**
+   * This method brings the quizzes data to the user.
+   */
   public getQuestionnaires(): void {
-
-
+    this.loading = true;
     let listQuestionnaires: Questionnaire[] = [];
-    this.subscription = this._quizzService.getQuestionnairesByIdUser(this.user.uid).subscribe( data => {
-
+    this.subscriptionQuizz = this._quizzService.getQuestionnairesByIdUser(this.user.uid).subscribe( data => {
       // Push the items to the array.
       data.forEach( (ques: any) => {
         listQuestionnaires.push(
@@ -79,21 +111,21 @@ export class ListQuestionnaireComponent implements OnInit, OnDestroy {
             ...ques.payload.doc.data()
           }
           );
-
       });
-
       this.dataSource.data = listQuestionnaires;
       // Set the loader to false.
       this.loading = false;
 
     }, error => {
-
       console.log(error);
       this._notificationService.showError("We couldn't show the questionnaires data','Error");
       this.loading = false;
     });
-
   }
+
+  /**
+   * DELETE SECTION
+   */
 
   /**
    * This method trigger the angular material dialog modal.
@@ -109,25 +141,28 @@ export class ListQuestionnaireComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * This method manages the ID to delete.
+   *
+   * @param id ID of the quizz to delete.
+   */
   public selectItemToDelete(id: string): void {
     this.idQuestionnaire = id;
     this.openDialog();
   }
 
+  /**
+   * This method manages the delete method from the quizz service.
+   */
   public deleteItem(): void {
     this.loading = true;
-
     this._quizzService.deleteQuestionnaire(this.idQuestionnaire).then( () => {
-
       this._notificationService.showSuccess('', 'Questionnaire Deleted');
-
     }).catch( err => {
-
       console.log(err);
       this._notificationService.showError('This questionnaire could not be deleted.', 'Error');
 
     });
-
     this.loading = false;
   }
 

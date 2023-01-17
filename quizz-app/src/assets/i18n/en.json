@@ -1,8 +1,13 @@
 {
+  "test": "test",
     "table": {
         "title": "Title",
         "numberQuestions": "Num. Questions",
         "code": "Code",
         "actions": "Actions"
+    },
+    "listQuestionnaires": {
+      "emptyMsgTitle": "There is no questionnaires"
     }
+
 }

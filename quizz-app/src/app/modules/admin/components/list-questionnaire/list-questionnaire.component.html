@@ -1,11 +1,12 @@
 <div *transloco="let t">
-
   <!-- Spinner -->
-  <div *ngIf="loading">
-    <app-spinner></app-spinner>
-  </div>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+  <!-- Empty Msg -->
+  <app-empty-msg *ngIf="noResults" [title]="titleEmptyMsg"></app-empty-msg>
+
+  <!-- Table -->
+  <table *ngIf="!noResults" mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>{{ t('table.title') }}</th>
       <td mat-cell class="capital" *matCellDef="let item">{{ item.title }}</td>

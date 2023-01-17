@@ -1,1 +1,12 @@
-{}
+{
+  "table": {
+    "title": "Titulo",
+    "numberQuestions": "Num. Preguntas",
+    "code": "Codigo",
+    "actions": "Acciones"
+  },
+  "listQuestionnaires": {
+    "emptyMsgTitle": "No hay cuestionarios creados"
+  }
+
+}
