@@ -6,6 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { InputPlayerNameComponent } from './components/input-player-name/input-player-name.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { PlayQuizzComponent } from './components/play-quizz/play-quizz.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PlayQuizzComponent } from './components/play-quizz/play-quizz.component
   imports: [
     CommonModule,
     PlayRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslocoModule
   ]
 })
 export class PlayModule { }

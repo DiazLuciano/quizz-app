@@ -8,6 +8,7 @@
     "placeholder": "PIN del Juego",
     "play": "Jugar"
   },
+  "validateMsg": "Primero, inserte el PIN del cuestionario",
   "table": {
     "title": "Titulo",
     "numberQuestions": "Num. Preguntas",

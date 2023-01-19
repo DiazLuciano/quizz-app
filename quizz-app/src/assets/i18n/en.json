@@ -8,6 +8,12 @@
     "placeholder": "PIN Game",
     "play": "Play"
   },
+  "validateMsg": "Firstly, insert PIN game",
+  "inputPlayerName": {
+    "placeholder": "player name",
+    "buttonStart": "start",
+    "buttonBack": "back"
+  },
   "table": {
     "title": "Title",
     "numberQuestions": "Num. Questions",
