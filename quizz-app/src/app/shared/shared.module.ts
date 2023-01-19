@@ -4,11 +4,13 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { EmptyMsgComponent } from './empty-msg/empty-msg.component';
+import { QuizzResultsComponent } from './quizz-results/quizz-results.component';
 
 @NgModule({
   declarations: [
     SpinnerComponent,
     EmptyMsgComponent,
+    QuizzResultsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,12 +1,14 @@
 <div *transloco="let t">
   <!-- Spinner -->
-
+  <div class="d-flex justify-content-center" *ngIf="loading">
+    <app-spinner></app-spinner>
+  </div>
 
   <!-- Empty Msg -->
-  <app-empty-msg *ngIf="noResults" [title]="titleEmptyMsg"></app-empty-msg>
+  <app-empty-msg *ngIf="noResults && !loading" [title]="titleEmptyMsg"></app-empty-msg>
 
   <!-- Table -->
-  <table *ngIf="!noResults" mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+  <table *ngIf="!noResults && !loading" mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>{{ t('table.title') }}</th>
       <td mat-cell class="capital" *matCellDef="let item">{{ item.title }}</td>
@@ -29,12 +31,12 @@
           #tooltip="matTooltip"
           matTooltip="View Details"
           matTooltipPosition="above"
-          [routerLink]="['/dashboard/view/', element.id]"></i>
+          [routerLink]="['view/', element.id]"></i>
         <i class="fa-solid fa-chart-line me-3"
           #tooltip="matTooltip"
           matTooltip="View Statistics"
           matTooltipPosition="above"
-          [routerLink]="['/dashboard/statistics/', element.id]"></i>
+          [routerLink]="['statistics/', element.id]"></i>
         <i class="fa-solid fa-trash-can"
           #tooltip="matTooltip"
           matTooltip="Delete Quizz"

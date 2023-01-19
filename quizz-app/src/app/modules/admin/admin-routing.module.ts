@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListQuestionnaireComponent } from './components/list-questionnaire/list-questionnaire.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { CreateComponent } from './components/create/create.component';
+import { ViewQuestionnaireComponent } from './components/view-questionnaire/view-questionnaire.component';
 
 const routes: Routes = [
   {
@@ -14,12 +15,17 @@ const routes: Routes = [
     }
   },
   {
+    path: 'view/:id',
+    component: ViewQuestionnaireComponent,
+    pathMatch: 'full'
+  },
+  {
     path: 'create',
     component: CreateComponent,
     pathMatch: 'full'
   },
   {
-    path: 'statistics',
+    path: 'statistics/:id',
     component: StatisticsComponent,
     pathMatch: 'full'
   }

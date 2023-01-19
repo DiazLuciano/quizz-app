@@ -12,6 +12,7 @@ import { CreateQuestionsComponent } from './components/create-questions/create-q
 import { CreateComponent } from './components/create/create.component';
 import { ListQuestionsComponent } from './components/list-questions/list-questions.component';
 import { TranslocoModule } from '@ngneat/transloco';
+import { ViewQuestionnaireComponent } from './components/view-questionnaire/view-questionnaire.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { TranslocoModule } from '@ngneat/transloco';
     CreateQuestionsComponent,
     CreateComponent,
     ListQuestionsComponent,
+    ViewQuestionnaireComponent,
   ],
   imports: [
     CommonModule,

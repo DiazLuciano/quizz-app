@@ -112,6 +112,7 @@ export class ListQuestionnaireComponent implements OnInit, OnDestroy {
           }
           );
       });
+      if( listQuestionnaires.length > 0) this.noResults = false;
       this.dataSource.data = listQuestionnaires;
       // Set the loader to false.
       this.loading = false;

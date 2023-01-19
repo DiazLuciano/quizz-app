@@ -25,6 +25,10 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'play',
+    loadChildren: () => import('./modules/play/play.module').then((m) => m.PlayModule),
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

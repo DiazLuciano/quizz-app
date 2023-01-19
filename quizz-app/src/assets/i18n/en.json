@@ -1,13 +1,15 @@
 {
-  "test": "test",
-    "table": {
-        "title": "Title",
-        "numberQuestions": "Num. Questions",
-        "code": "Code",
-        "actions": "Actions"
-    },
-    "listQuestionnaires": {
-      "emptyMsgTitle": "There is no questionnaires"
-    }
+  "home": {
+    "errorMsg": "Complete with the quizz Code"
+  },
+  "table": {
+    "title": "Title",
+    "numberQuestions": "Num. Questions",
+    "code": "Code",
+    "actions": "Actions"
+  },
+  "listQuestionnaires": {
+    "emptyMsgTitle": "There is no questionnaires"
+  }
 
 }

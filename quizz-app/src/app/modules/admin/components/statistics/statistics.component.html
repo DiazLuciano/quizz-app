@@ -1,1 +1,58 @@
-<p>statistics works!</p>
+<div *transloco="let t">
+  <!-- Spinner -->
+  <div class="d-flex justify-content-center" *ngIf="loading">
+    <app-spinner></app-spinner>
+  </div>
+
+  <!-- Empty Msg -->
+  <!-- <app-empty-msg *ngIf="noResults && !loading" [title]="titleEmptyMsg"></app-empty-msg> -->
+
+  <!-- Table -->
+  <!-- <table *ngIf="!noResults && !loading" mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>{{ t('table.title') }}</th>
+      <td mat-cell class="capital" *matCellDef="let item">{{ item.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="numberQuestions">
+      <th mat-header-cell *matHeaderCellDef>{{ t('table.numberQuestions') }}</th>
+      <td mat-cell *matCellDef="let item">{{ item.numberQuestions }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+      <th mat-header-cell *matHeaderCellDef>{{ t('table.code') }}</th>
+      <td mat-cell *matCellDef="let item">{{ item.code }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>{{ t('table.actions') }}</th>
+      <td mat-cell *matCellDef="let element">
+        <i class="fa-solid fa-magnifying-glass me-3"
+          #tooltip="matTooltip"
+          matTooltip="View Details"
+          matTooltipPosition="above"
+          [routerLink]="['view/', element.id]"></i>
+        <i class="fa-solid fa-chart-line me-3"
+          #tooltip="matTooltip"
+          matTooltip="View Statistics"
+          matTooltipPosition="above"
+          [routerLink]="['statistics/', element.id]"></i>
+        <i class="fa-solid fa-trash-can"
+          #tooltip="matTooltip"
+          matTooltip="Delete Quizz"
+          matTooltipPosition="above"
+          (click)="selectItemToDelete(element.id!)"></i>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns;"
+    ></tr>
+
+  </table> -->
+
+</div>
+
+
