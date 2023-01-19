@@ -1,6 +1,12 @@
 {
   "home": {
-    "errorMsg": "Complete with the quizz Code"
+    "errorEmptyMsg": "Complete with the quizz Code",
+    "errorPinNotFound": "PIN Code have not been found",
+    "systemError": "System Error",
+    "here": "here",
+    "makeQuizz": "Make your own free questionnaire",
+    "placeholder": "PIN Game",
+    "play": "Play"
   },
   "table": {
     "title": "Title",
