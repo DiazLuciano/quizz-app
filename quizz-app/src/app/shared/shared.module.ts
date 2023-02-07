@@ -5,18 +5,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material/material.module';
 import { EmptyMsgComponent } from './empty-msg/empty-msg.component';
 import { QuizzResultsComponent } from './quizz-results/quizz-results.component';
+import { CounterComponent } from './counter/counter.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [
     SpinnerComponent,
     EmptyMsgComponent,
     QuizzResultsComponent,
+    CounterComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    TranslocoModule
   ],
   exports: [
     MaterialModule,
@@ -25,6 +29,7 @@ import { QuizzResultsComponent } from './quizz-results/quizz-results.component';
     ReactiveFormsModule,
     SpinnerComponent,
     EmptyMsgComponent,
+    CounterComponent
   ]
 })
 export class SharedModule { }

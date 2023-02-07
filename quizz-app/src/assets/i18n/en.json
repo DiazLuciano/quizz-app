@@ -22,6 +22,20 @@
   },
   "listQuestionnaires": {
     "emptyMsgTitle": "There is no questionnaires"
+  },
+  "playQuizz": {
+    "buttonNext": "next",
+    "saveSuccess": "Quizz Completed",
+    "saveFail": "Quizz Not Saved"
+  },
+  "quizzResult": {
+    "title": "game resume",
+    "labelName": "name",
+    "labelScore": "score",
+    "labelNumberQuestions": "num. questions",
+    "labelCorrects": "corrects",
+    "labelIncorrects": "incorrects",
+    "buttonBack": "return home"
   }
 
 }

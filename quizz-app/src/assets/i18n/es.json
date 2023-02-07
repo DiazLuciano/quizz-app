@@ -22,5 +22,8 @@
   },
   "listQuestionnaires": {
     "emptyMsgTitle": "No hay cuestionarios creados"
+  },
+  "playQuizz": {
+    "buttonAccept": "aceptar"
   }
 }

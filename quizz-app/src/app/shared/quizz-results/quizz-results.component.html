@@ -1,1 +1,77 @@
-<p>quizz-results works!</p>
+<div *transloco="let t; read: 'quizzResult'">
+  <!-- Spinner -->
+  <div *ngIf="loading" class="d-flex justify-content-center" >
+    <app-spinner></app-spinner>
+  </div>
+
+
+  <div *ngIf="!loading">
+    <mat-card>
+      <div class="w-100 text-center mt-5">
+        <!-- Title -->
+        <div class="fs-2 mb-5">{{ t('title') | uppercase}}</div>
+        <mat-divider></mat-divider>
+
+        <!-- Player Info -->
+        <div class="mt-3 text-center">
+          <div class="row g-2">
+            <div class="col-6">
+              <div class="p-3">
+                <span class="fs-6 fw-semibold">{{ t('labelName') | uppercase }}:</span><br>
+                <span class="fs-6 fw-light capital">{{ result.playerName }}</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3">
+                <span class="fs-6 fw-semibold">{{ t('labelScore') | uppercase }}:</span><br>
+                <span class="fs-6 fw-light">{{ result.score }}</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3">
+                <span class="fs-6 fw-semibold">{{ t('labelNumberQuestions') | uppercase }}:</span><br>
+                <span class="fs-6 fw-light">{{ result.numberQuestions }}</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3">
+                <span class="fs-6 fw-semibold">{{ t('labelCorrects') | uppercase }}:</span><br>
+                <span class="fs-6 fw-light">{{ result.numberCorrectOnes }}</span>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3">
+                <span class="fs-6 fw-semibold">{{ t('labelIncorrects') | uppercase }}:</span><br>
+                <span class="fs-6 fw-light">{{ result.numberIncorrectOnes }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <!-- Results -->
+        <div *ngFor="let question of result.listUserAnswers">
+          <mat-card>
+            <mat-card-title class="text-center capital" >{{ question.title }}</mat-card-title>
+            <mat-card-content class="mt-3">
+                <ul class="list-group">
+                    <li *ngFor="let answer of question.listAnswers; let i = index" [ngClass]="{ 'isCorrect': answer.isCorrect === true && question.indexSelectedAnswer === i,
+                    'isIncorrect': answer.isCorrect === false && question.indexSelectedAnswer === i }" class="list-group-item list-group-item-dark" >
+                        {{ answer.description }}
+                    </li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+        </div>
+
+
+      </div>
+    </mat-card>
+
+    <!-- Back Button -->
+    <div class="text-center mt-5">
+      <button class="btn btn-outline-secondary btn-lg" type="button" (click)="back()">{{t('buttonBack') | uppercase}}</button>
+    </div>
+  </div>
+</div>

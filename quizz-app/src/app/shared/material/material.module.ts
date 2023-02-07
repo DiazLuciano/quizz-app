@@ -13,6 +13,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     DialogComponent
@@ -31,7 +33,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSliderModule,
     MatRadioModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatListModule,
+    MatGridListModule
   ],
   exports: [
     MatCardModule,
@@ -48,7 +52,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatRadioModule,
     MatDialogModule,
     MatTooltipModule,
-    DialogComponent
+    MatListModule,
+    DialogComponent,
+    MatGridListModule
   ]
 })
 export class MaterialModule { }

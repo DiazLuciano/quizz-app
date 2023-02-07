@@ -4,6 +4,7 @@ import { ListQuestionnaireComponent } from './components/list-questionnaire/list
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { CreateComponent } from './components/create/create.component';
 import { ViewQuestionnaireComponent } from './components/view-questionnaire/view-questionnaire.component';
+import { QuizzResultsComponent } from '../../shared/quizz-results/quizz-results.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'statistics/:id',
     component: StatisticsComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'quizz-result-admin/:id',
+    component: QuizzResultsComponent,
     pathMatch: 'full'
   }
 ];

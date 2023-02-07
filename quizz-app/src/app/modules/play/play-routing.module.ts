@@ -24,7 +24,7 @@ const routes: Routes = [
     path: 'quizz-result/:id',
     component: QuizzResultsComponent,
     pathMatch: 'full'
-  }
+  },
 ];
 
 @NgModule({

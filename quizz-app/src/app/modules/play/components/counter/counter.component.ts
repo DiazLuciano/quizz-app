@@ -7,13 +7,13 @@ import { NotificationService } from 'src/core/services/notification/notification
 import { PlayQuizzService } from '../../services/play-quizz.service';
 
 @Component({
-  selector: 'app-counter',
+  selector: 'app-counter-quizz',
   templateUrl: './counter.component.html',
   styleUrls: ['./counter.component.css']
 })
 export class CounterComponent implements OnInit, OnDestroy {
   /** Properties */
-  public counter: number = 3;
+  public seconds: number = 3;
   public intervalCounter: any;
 
   /** Translations  */
@@ -78,10 +78,10 @@ export class CounterComponent implements OnInit, OnDestroy {
   public setCounter() {
     this.intervalCounter = setInterval( () => {
       // Check if counter equals 0.
-      if ( this.counter === 1 ) {
+      if ( this.seconds === 1 ) {
         this._router.navigate(['/play/play-quizz']);
       }
-      this.counter = this.counter - 1;
+      this.seconds = this.seconds - 1;
     }, 1000);
   }
 

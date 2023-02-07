@@ -21,7 +21,7 @@ export class InputPlayerNameComponent implements OnInit, OnDestroy {
   public validateMsg!: string;
 
   /** Subscriptions */
-  public susbscriptionTranslation: Subscription = new Subscription();
+  public subscriptionTranslation: Subscription = new Subscription();
 
   constructor(
     private _router: Router,
@@ -40,7 +40,7 @@ export class InputPlayerNameComponent implements OnInit, OnDestroy {
    * OnInit
    */
   public ngOnInit(): void {
-    this.susbscriptionTranslation =  this._translationService.selectTranslate('validateMsg').subscribe( value => {
+    this.subscriptionTranslation =  this._translationService.selectTranslate('validateMsg').subscribe( value => {
       this.validateMsg = value;
     });
   }
@@ -49,7 +49,7 @@ export class InputPlayerNameComponent implements OnInit, OnDestroy {
    * OnDestroy
    */
   ngOnDestroy(): void {
-    this.susbscriptionTranslation.unsubscribe();
+    this.subscriptionTranslation.unsubscribe();
   }
 
   /** METHODS */
@@ -69,7 +69,7 @@ export class InputPlayerNameComponent implements OnInit, OnDestroy {
       return;
     }
     if(this.validateRefresh()) {
-      this._playService.playerName = this.playerName;
+      this._playService.playerName = this.form.get('playerName')?.value;
       this._router.navigate(['/play/counter']);
     }
   }
