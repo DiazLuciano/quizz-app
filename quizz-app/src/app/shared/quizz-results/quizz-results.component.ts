@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlayQuizzService } from 'src/app/modules/play/services/play-quizz.service';
 import { Subscription } from 'rxjs';
+import { ResultQuizz } from '../../../core/interfaces/result-quizz.interface';
 
 @Component({
   selector: 'app-quizz-results',
@@ -13,7 +14,7 @@ export class QuizzResultsComponent implements OnInit, OnDestroy {
   /** Properties */
   public id: string;
   public loading = true;
-  public result: any;
+  public resultQuizz!: ResultQuizz;
   public previousRoute = '';
 
   /** Subscriptions */
@@ -57,7 +58,7 @@ export class QuizzResultsComponent implements OnInit, OnDestroy {
     this.subscriptionResult = this._playService.getUserAnswer(this.id).subscribe(
       {
         next: (doc:any) => {
-          this.result = doc.data();
+          this.resultQuizz = doc.data();
         },
         error: (err:any) => {
           console.log(err);
@@ -71,7 +72,7 @@ export class QuizzResultsComponent implements OnInit, OnDestroy {
 
   public back() {
     if (this.previousRoute == 'quizz-result-admin') {
-      this._router.navigate(['admin/statistics', this.result.idQuestionnaire]);
+      this._router.navigate(['admin/statistics', this.resultQuizz.idQuestionnaire]);
     } else {
       this._router.navigate(['/'])
     }

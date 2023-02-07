@@ -5,6 +5,8 @@ import { NotificationService } from 'src/core/services/notification/notification
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { TranslocoService } from '@ngneat/transloco';
+import { PlayerAnswer } from '../../../../../core/interfaces/player-answer.interface';
+import { ResultQuizz } from 'src/core/interfaces/result-quizz.interface';
 
 @Component({
   selector: 'app-play-quizz',
@@ -26,7 +28,7 @@ export class PlayQuizzComponent implements OnInit, OnDestroy {
   public correctOnes = 0;
   public IncorrectOnes = 0;
   public totalScore = 0;
-  public listUserAnswers: any[] = [];
+  public listUserAnswers: PlayerAnswer[] = [];
 
   /** Counter Properties */
   public seconds!: number;
@@ -120,9 +122,9 @@ export class PlayQuizzComponent implements OnInit, OnDestroy {
     this.checkCounterForCorrectAndIncorrect();
 
     // Create answer object.
-    const userAnswer = {
+    const userAnswer: PlayerAnswer = {
       title: this.quizz.listQuestions![this.indexQuestion].title,
-      totalScore: this.getQuestionPoints(),
+      score: this.getQuestionPoints(),
       seconds: this.getWaitedSeconds(),
       indexSelectedAnswer: this.getSelectedIndex(),
       listAnswers: this.quizz.listQuestions![this.indexQuestion].listAnswers
@@ -200,11 +202,11 @@ export class PlayQuizzComponent implements OnInit, OnDestroy {
   public saveUserAnswersQuestionnaire() {
       this.loading = true;
 
-      const answersQuestionnaire: any = {
-        idQuestionnaire: this.quizz.id,
+      const answersQuestionnaire: ResultQuizz = {
+        idQuestionnaire: this.quizz.id!,
         playerName: this.playerName,
         date: new Date(),
-        numberQuestions: this.quizz.numberQuestions,
+        numberQuestions: this.quizz.numberQuestions!,
         numberCorrectOnes: this.correctOnes,
         numberIncorrectOnes: this.IncorrectOnes,
         listUserAnswers: this.listUserAnswers,
