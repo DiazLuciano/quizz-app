@@ -8,6 +8,45 @@
     "placeholder": "PIN Game",
     "play": "Play"
   },
+  "signIn": {
+    "title": "log in",
+    "errorInvalidMail": "Please enter a valid email address",
+    "errorRequiredMail": "Email is required",
+    "errorRequiredPassword": "Password is required",
+    "errorShortPassword": "Password must have at least 6 characters",
+    "buttonBack": "back",
+    "buttonLogin": "login",
+    "linkRecover": "Recover password",
+    "linkRegister": "Register",
+    "placeholderUsername": "Ex. pat@example.com",
+    "placeHolderPassword": "Password"
+  },
+  "recover": {
+    "title": "recover password",
+    "description": "Put your username/email to sent you a recovery link verification to restore your password.",
+    "buttonBack": "back",
+    "buttonRecover": "recover",
+    "placeholderUsername": "Ex. pat@example.com",
+    "placeHolderPassword": "Password"
+  },
+  "verify": {
+    "title": "verify email",
+    "description": "An email was recently sent you. Please, check your inbox or your spam and then click on the link to verify your email.",
+    "buttonBack": "back"
+  },
+  "signUp": {
+    "title": "sign up",
+    "description": "Create an account to start your own quizz!",
+    "placeholderUsername": "Ex. pat@example.com",
+    "placeHolderPassword": "Password",
+    "errorInvalidMail": "Please enter a valid email address",
+    "errorRequiredMail": "Email is required",
+    "errorRequiredPassword": "Password is required",
+    "errorShortPassword": "Password must have at least 6 characters",
+    "errornNotSamePass": "Passowords are not same",
+    "buttonBack": "back",
+    "buttonSignUp": "sign up"
+  },
   "validateMsg": "Firstly, insert PIN game",
   "inputPlayerName": {
     "placeholder": "player name",

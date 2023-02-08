@@ -30,7 +30,7 @@ a {
 }
 
 /* Icons */
-.fa-eye {
+.fa-eye, .fa-eye-slash {
   cursor: pointer;
 }
 

@@ -1,67 +1,71 @@
-<div  class="container d-flex justify-content-center align-items-center">
-
+<div  class="container d-flex justify-content-center align-items-center" *transloco="let t; read: 'signUp'">
   <!-- Spinner -->
   <div *ngIf="loading" class="d-flex justify-content-center">
     <app-spinner></app-spinner>
   </div>
-
   <!-- Register Form -->
   <mat-card *ngIf="!loading" class="animate__animated animate__fadeInLeft">
-
-    <mat-card-title class="mb-4">Register</mat-card-title>
+    <mat-card-title class="mb-4">{{ t('title') | titlecase }}</mat-card-title>
     <mat-card-subtitle>
-      Create an account to start your own quizz!
+      {{ t('description') }}
     </mat-card-subtitle>
 
-    <mat-card-content class="d-flex flex-column">
-      <form [formGroup]="form">
+    <form [formGroup]="form">
+      <mat-card-content>
+          <!-- Email -->
+          <div class="d-flex flex-column mb-2">
+            <mat-form-field appearance="fill">
+              <input type="email" matInput  placeholder="Ex. pat@example.com" autocomplete="off" formControlName="email" required>
+            </mat-form-field>
+            <mat-error *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+              {{ t('errorInvalidMail') }}
+            </mat-error>
+            <mat-error *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+              {{ t('errorRequiredMail') }}
+            </mat-error>
+          </div>
 
-        <!-- Email -->
-        <mat-form-field appearance="fill" lass="mb-2">
-          <input type="email" matInput placeholder="Ex. pat@example.com" autocomplete="off" formControlName="email" >
-        </mat-form-field>
-        <mat-error *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
-          Email is <strong>required</strong>
-        </mat-error>
+          <!-- Password -->
+          <div class="d-flex flex-column mb-2">
+            <mat-form-field appearance="fill">
+              <input [type]="inputType" matInput placeholder="Password" formControlName="password" required>
+            </mat-form-field>
+            <mat-error *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
+              {{ t('errorShortPassword') }}
+            </mat-error>
+            <mat-error *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+              {{ t('errorRequiredPassword') }}
+            </mat-error>
+          </div>
 
-        <!-- Password -->
-        <mat-form-field appearance="fill" class="mb-2">
-          <input [type]="inputType" matInput placeholder="Password" formControlName="password" >
-        </mat-form-field>
-        <mat-error *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
-          Password is <strong>required</strong>
-        </mat-error>
+          <!-- Repeat Password -->
+          <div class="d-flex flex-column">
+            <mat-form-field appearance="fill">
+              <input [type]="inputType" matInput placeholder="Repeat Password" formControlName="repeatPassword" required>
+              <mat-icon matSuffix>
+                <i (click)="passwordVisibility()" class="fa-solid" [ngClass]="{
+                  'fa-eye-slash': visibility === true,
+                  'fa-eye': visibility === false}"
+                ></i>
+              </mat-icon>
+            </mat-form-field>
+              <mat-error *ngIf="form.hasError('notSame') && form.get('repeatPassword')?.touched">
+                {{ t('errornNotSamePass') }}
+              </mat-error>
+              <mat-error *ngIf="form.get('repeatPassword')?.hasError('required') && form.get('repeatPassword')?.touched">
+                {{ t('errorRequiredPassword') }}
+              </mat-error>
+          </div>
+      </mat-card-content>
 
-        <!-- Repeat Password -->
-        <mat-form-field appearance="fill">
-          <input [type]="inputType" matInput placeholder="Repeat Password" formControlName="repeatPassword" >
-          <mat-icon matSuffix>
-            <i (click)="passwordVisibility()" class="fa-solid" [ngClass]="{
-              'fa-eye-slash': visibility === true,
-              'fa-eye': visibility === false}"
-            ></i>
-          </mat-icon>
-        </mat-form-field>
-        <mat-error *ngIf="form.get('repeatPassword')?.hasError('required') && form.get('repeatPassword')?.touched">
-          Password is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="form.hasError('notSame') && form.get('repeatPassword')?.touched">
-          Passowords are <strong>not same</strong>
-        </mat-error>
-      </form>
-    </mat-card-content>
-    <mat-divider inset></mat-divider>
+      <mat-divider inset class="ms-0"></mat-divider>
 
-    <!-- Action Buttons -->
-    <mat-card-actions class="d-flex p-3 justify-content-between">
-      <button mat-stroked-button routerLink="/auth/login">BACK</button>
-      <button mat-flat-button color="primary" type="submit" (click)="register()"[disabled]="form.invalid">REGISTER</button>
-    </mat-card-actions>
-
-
+      <!-- Action Buttons -->
+      <mat-card-actions class="d-flex p-3 justify-content-between">
+        <button mat-stroked-button type="button" routerLink="/auth/login">{{ t('buttonBack') | uppercase }}</button>
+        <button mat-flat-button color="primary" type="submit" (click)="register()" (keyup.enter)="register()" [disabled]="form.invalid">{{ t('buttonSignUp') | uppercase }}</button>
+      </mat-card-actions>
+    </form>
   </mat-card>
 </div>
 

@@ -10,33 +10,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
-  /* PROPERTIES */
-  /* -------------------------------------------------------------------*/
-
-  /**
-   * Property that manage the loading spinner.
-   */
+  /** Properties */
   public loading: boolean = false;
-
-  /**
-   * Property that manages the visibility of the input password.
-   */
   public visibility: boolean = false;
-
-  /**
-   *  Property that manages the type of the input password.
-   */
   public inputType: string = 'password';
-
-  /**
-   * Property that represents the register form data.
-   */
   public form: FormGroup;
-
-  /**
-   *
-   */
   public preUser!: IPreUser;
 
   /**
@@ -49,7 +27,7 @@ export class RegisterComponent {
     ) {
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       repeatPassword: ['', Validators.required]
     },
     {
@@ -67,10 +45,8 @@ export class RegisterComponent {
  * @returns
  */
   private checkPasswords(form: FormGroup) {
-
     const pass = form.get('password')?.value;
     const repeatPassword = form.get('repeatPassword')?.value;
-
     return pass === repeatPassword ? null : { notSame: true };
   }
 
@@ -78,7 +54,6 @@ export class RegisterComponent {
    * This method allows to change the visibility of the password content.
    */
   public passwordVisibility() {
-
     if( this.visibility === true) {
       this.visibility = false;
       this.inputType = 'password';
@@ -92,7 +67,6 @@ export class RegisterComponent {
    * This method manage the register form for the new user.
    */
   public register(): void {
-
     this.loading = true;
 
     this.preUser = {
@@ -101,8 +75,11 @@ export class RegisterComponent {
     }
 
     this._authUserService.signUp(this.preUser).then( () => {
-      this._router.navigate(['/verify']);
-    }).finally( () => { this.loading = false; });
+      this._router.navigate(['auth/verify']);
+    })
+    .catch( err => {
+      console.log(err)
+    })
+    .finally( () => { this.loading = false; });
   }
-
 }

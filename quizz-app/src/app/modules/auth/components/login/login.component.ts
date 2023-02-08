@@ -10,7 +10,6 @@ import { IPreUser } from '../../../../../core/auth/interfaces/auth.interface';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
   /** PROPERTIES */
   /* -------------------------------------------------------------------*/
 
@@ -51,7 +50,6 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
-
    }
 
   /** PUBLIC METHODS */
@@ -61,7 +59,6 @@ export class LoginComponent {
    * This method manage the data on the inputs to make a request to login to firebase.
    */
   public signIn(): void {
-
     // Show loading spinner.
     this.loading = true;
 
@@ -70,16 +67,13 @@ export class LoginComponent {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value
     }
-
     this._authUserService.signIn(preUser).finally( () => this.loading = false);
-
   }
 
   /**
    * This method manage the visibility of the input password, through the eye icon.
    */
   public passwordVisibility(): void {
-
     if(this.visibility === true) {
       this.inputType = 'password';
       this.visibility = false;
@@ -88,5 +82,4 @@ export class LoginComponent {
       this.visibility = true;
     }
   }
-
 }

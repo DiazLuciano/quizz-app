@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center align-items-center">
+<div class="container d-flex justify-content-center align-items-center" *transloco="let t; read: 'signIn'">
 
   <!-- Spinner -->
   <div *ngIf="loading">
@@ -7,54 +7,50 @@
 
   <!-- Card Login -->
   <mat-card *ngIf="!loading" class="animate__animated animate__fadeInLeft">
+    <mat-card-title class="mb-4">{{ t('title') | titlecase }}</mat-card-title>
 
-    <mat-card-title class="mb-4">Sign In</mat-card-title>
+    <form [formGroup]="form">
+      <mat-card-content class="d-flex flex-column">
+          <!-- Username/Email -->
+          <mat-form-field appearance="fill" class="mb-2">
+            <input formControlName="email" type="email" matInput placeholder="{{ t('placeholderUsername') }}">
+            <mat-error *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
+              {{ t('errorInvalidMail') }}
+            </mat-error>
+            <mat-error *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
+              {{t('errorRequiredMail')}}
+            </mat-error>
+          </mat-form-field>
 
-    <mat-card-content class="d-flex flex-column">
-      <form [formGroup]="form">
+          <!-- Password -->
+          <mat-form-field appearance="fill">
+            <input formControlName="password" [type]="inputType" maxlength="15" matInput placeholder="{{ t('placeHolderPassword') }}">
+            <mat-icon matSuffix>
+              <i (click)="passwordVisibility()" class="fa-solid" [ngClass]="{
+                'fa-eye-slash': visibility === true,
+                'fa-eye': visibility === false}"
+              ></i>
+            </mat-icon>
+            <mat-error *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
+              {{ t('errorRequiredPassword') }}
+            </mat-error>
+            <mat-error *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
+              {{ t('errorShortPassword') }}
+            </mat-error>
+          </mat-form-field>
+      </mat-card-content>
 
-        <!-- Username/Email -->
-        <mat-form-field appearance="fill" class="mb-2">
-          <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com">
-          <mat-error *ngIf="form.get('email')?.hasError('email') && form.get('email')?.touched">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched">
-            Email is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <!-- Password -->
-        <mat-form-field appearance="fill">
-          <input formControlName="password" [type]="inputType" matInput placeholder="Password">
-          <mat-icon matSuffix>
-            <i (click)="passwordVisibility()" class="fa-solid" [ngClass]="{
-              'fa-eye-slash': visibility === true,
-              'fa-eye': visibility === false}"
-            ></i>
-          </mat-icon>
-          <mat-error *ngIf="form.get('password')?.hasError('required') && form.get('password')?.touched">
-            Password is <strong>required</strong>
-          </mat-error>
-          <mat-error *ngIf="form.get('password')?.hasError('minlength') && form.get('password')?.touched">
-            Password must have at least <strong>6 characters</strong>
-          </mat-error>
-        </mat-form-field>
-
-      </form>
-    </mat-card-content>
-
-    <mat-card-actions class="d-flex p-3 justify-content-between">
-      <button mat-stroked-button routerLink="/">BACK</button>
-      <button mat-flat-button color="primary" (click)="signIn()" [disabled]="form.invalid">LOG IN</button>
-    </mat-card-actions>
+      <mat-card-actions class="d-flex p-3 justify-content-between">
+        <button mat-stroked-button routerLink="/" type="button">{{ t('buttonBack') | uppercase }}</button>
+        <button mat-flat-button color="primary" (click)="signIn()" [disabled]="form.invalid" type="submit">{{ t('buttonLogin') | uppercase }}</button>
+      </mat-card-actions>
+    </form>
 
     <mat-divider inset></mat-divider>
 
     <mat-card-footer class="d-flex p-3 justify-content-between">
-      <a href="/auth/register">Register</a>
-      <a href="/auth/recover">Recover Password</a>
+      <a href="/auth/register">{{ t('linkRegister') }}</a>
+      <a href="/auth/recover">{{ t('linkRecover') }}</a>
     </mat-card-footer>
-
   </mat-card>
 </div>

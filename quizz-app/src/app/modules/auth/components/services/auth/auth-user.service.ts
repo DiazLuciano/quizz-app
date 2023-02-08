@@ -3,7 +3,6 @@ import { IPreUser } from 'src/core/auth/interfaces/auth.interface';
 import { AuthService } from 'src/core/auth/services/auth/auth.service';
 import { ErrorAuthService } from '../../../../../../core/auth/services/error/error-auth.service';
 import { Router } from '@angular/router';
-import { NotificationService } from '../../../../../../core/services/notification/notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +28,6 @@ export class AuthUserService {
    * @param preUser
    */
   public signIn(preUser: IPreUser): Promise<any> {
-
     const result = new Promise<void>( (resolve, reject) => {
 
       this._authService.signIn(preUser).then( res => {
@@ -47,17 +45,13 @@ export class AuthUserService {
           res.user?.sendEmailVerification();
           this._router.navigate(['/auth/verify']);
         }
-
         resolve(res);
 
       }).catch( error => {
-
         this._errorService.manageErrors(error.code);
         reject(error);
-
       });
     })
-
     return result;
   }
 
@@ -68,7 +62,6 @@ export class AuthUserService {
    * @returns
    */
   public signUp(preUser: IPreUser): Promise<any> {
-
     const result = new Promise<void>((resolve, reject) => {
 
       this._authService.signUp(preUser).then( (res:any) => {
@@ -92,5 +85,4 @@ export class AuthUserService {
   public recoverPassword(email: string): Promise<void> {
     return this._authService.recoverPassword(email);
   }
-
 }

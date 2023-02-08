@@ -1,6 +1,5 @@
 
-<div class="container d-flex justify-content-center align-items-center">
-
+<div class="container d-flex justify-content-center align-items-center" *transloco="let t; read: 'recover'">
   <!-- SPINNER   -->
   <div *ngIf="loading" class="d-flex justify-content-center mt-5">
     <app-spinner></app-spinner>
@@ -9,27 +8,27 @@
   <!-- FORM -->
   <mat-card *ngIf="!loading" class="animate__animated animate__fadeInLeft">
 
-    <mat-card-title class="mb-4">Recover Password</mat-card-title>
+    <mat-card-title class="mb-4">{{ t('title') | titlecase }}</mat-card-title>
     <mat-card-subtitle>
-      Put your username/email to sent you a recovery link verification to restore your password.
+      {{ t('description') }}
     </mat-card-subtitle>
 
+    <form [formGroup]="form" >
     <mat-card-content class="d-flex flex-column">
-      <form [formGroup]="form" >
         <mat-form-field appearance="fill">
-          <input type="email" matInput placeholder="Ex. pat@example.com" autocomplete="off" formControlName="email" required>
+          <input type="email" matInput placeholder="{{ t('placeholderUsername') }}" autocomplete="off" formControlName="email" required>
           <mat-icon matSuffix>
             <i class="fa-solid fa-envelope"></i>
           </mat-icon>
         </mat-form-field>
-      </form>
-    </mat-card-content>
-    <mat-divider inset></mat-divider>
+      </mat-card-content>
+      <mat-divider inset class="ms-0"></mat-divider>
 
-    <mat-card-actions class="d-flex p-3 justify-content-between">
-      <button mat-stroked-button routerLink="/auth/login">BACK</button>
-      <button mat-flat-button color="primary" type="submit" (click)="recover()"[disabled]="form.invalid">RECOVER</button>
-    </mat-card-actions>
+      <mat-card-actions class="d-flex p-3 justify-content-between">
+        <button mat-stroked-button routerLink="/auth/login" type="button">{{ t('buttonBack') | uppercase }}</button>
+        <button mat-flat-button type="submit" color="primary" (click)="recover()"[disabled]="form.invalid">{{ t('buttonRecover') | uppercase }}</button>
+      </mat-card-actions>
+    </form>
   </mat-card>
 </div>
 
