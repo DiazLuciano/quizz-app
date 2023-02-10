@@ -60,7 +60,7 @@
     "actions": "Actions"
   },
   "listQuestionnaires": {
-    "emptyMsgTitle": "There is no questionnaires"
+    "emptyMsgTitle": "There are no questionnaires"
   },
   "playQuizz": {
     "buttonNext": "next",
@@ -75,6 +75,28 @@
     "labelCorrects": "corrects",
     "labelIncorrects": "incorrects",
     "buttonBack": "return home"
+  },
+  "statistics": {
+    "title": "list of games completed",
+    "buttonBack": "back",
+    "noResults": "there is no questionnaires completed",
+    "table": {
+      "playerName": "Player",
+      "date": "Date",
+      "score": "Score",
+      "actions": "Actions"
+    },
+    "emptyMsgTitle": "There are no complete questionnaires",
+    "itemDeleted": "Quizz result deleted",
+    "errorDeleting": "Sorry, quizz result couldn't been deleted"
+  },
+  "create": {
+    "step1": "data questionnaire",
+    "step2": "data questions",
+    "step3": "review",
+    "buttonCreate": "create quizz",
+    "buttonBack": "back"
   }
+
 
 }

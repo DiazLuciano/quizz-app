@@ -17,9 +17,6 @@ import { Observable } from '@firebase/util';
   styleUrls: ['./list-questionnaire.component.css']
 })
 export class ListQuestionnaireComponent implements OnInit, OnDestroy {
-
-  public displayedColumns: string[] = ['title', 'numberQuestions', 'code', 'actions'];
-
   /** Properties */
   public loading: boolean = false;
   public noResults: boolean = true;
@@ -34,6 +31,7 @@ export class ListQuestionnaireComponent implements OnInit, OnDestroy {
 
   /** Table Properties */
   public dataSource = new MatTableDataSource<Questionnaire>();
+  public displayedColumns: string[] = ['title', 'numberQuestions', 'code', 'actions'];
 
   /** Subscriptions */
   public subscriptionQuizz: Subscription = new Subscription();
@@ -100,27 +98,34 @@ export class ListQuestionnaireComponent implements OnInit, OnDestroy {
    * This method brings the quizzes data to the user.
    */
   public getQuestionnaires(): void {
-    this.loading = true;
     let listQuestionnaires: Questionnaire[] = [];
-    this.subscriptionQuizz = this._quizzService.getQuestionnairesByIdUser(this.user.uid).subscribe( data => {
-      // Push the items to the array.
-      data.forEach( (ques: any) => {
-        listQuestionnaires.push(
-          {
-            id: ques.payload.doc.id,
-            ...ques.payload.doc.data()
-          }
-          );
-      });
-      if( listQuestionnaires.length > 0) this.noResults = false;
-      this.dataSource.data = listQuestionnaires;
-      // Set the loader to false.
-      this.loading = false;
+    this.subscriptionQuizz = this._quizzService.getQuestionnairesByIdUser(this.user.uid).subscribe(
+    {
+      next: (data:any) => {
+        this.loading = true;
 
-    }, error => {
-      console.log(error);
-      this._notificationService.showError("We couldn't show the questionnaires data','Error");
-      this.loading = false;
+        // Push the items to the array.
+        data.forEach( (ques: any) => {
+          listQuestionnaires.push(
+            {
+              id: ques.payload.doc.id,
+              ...ques.payload.doc.data()
+            });
+        });
+
+        if( listQuestionnaires.length === 0)
+          this.noResults = true;
+        else
+          this.noResults = false;
+        this.dataSource.data = listQuestionnaires;
+        this.loading = false;
+      },
+      error: (error: any) => {
+        console.log(error);
+        this._notificationService.showError("We couldn't show the questionnaires data','Error");
+        this.loading = false;
+      },
+      complete: () => { this.loading = false; }
     });
   }
 

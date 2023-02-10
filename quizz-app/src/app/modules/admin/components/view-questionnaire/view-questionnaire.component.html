@@ -5,11 +5,9 @@
   </div>
 
   <div *ngIf="questionnaire !== undefined">
-
     <!-- Quizz Info -->
     <mat-card>
       <div class="w-100 text-center mt-5">
-
         <div class="quizz-title capital mb-5">{{ questionnaire.title }}</div>
         <div class="quizz-description capital mb-5">{{ questionnaire.description }}</div>
 
@@ -39,6 +37,5 @@
         <button class="btn btn-lg btn-dark" [routerLink]="['/admin']">BACK</button>
     </div>
   </div>
-
 </div>
 

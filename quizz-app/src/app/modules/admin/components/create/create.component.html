@@ -1,31 +1,31 @@
-<mat-stepper [linear]="isLinear" #stepper>
+<div *transloco="let t; read: 'create'">
+  <mat-stepper [linear]="isLinear" #stepper>
+    <!-- Step 1 -->
+    <mat-step [stepControl]="firstForm">
+      <ng-template matStepLabel>{{ t('step1') | titlecase}}</ng-template>
+      <div class="w-100">
+        <app-create-questionnaire (nextStep)="next($event, stepper)"></app-create-questionnaire>
+      </div>
+    </mat-step>
 
-  <!-- Step 1 -->
-  <mat-step [stepControl]="firstForm">
-    <ng-template matStepLabel>Data Questionnaire</ng-template>
-    <div class="w-100">
-      <app-create-questionnaire (nextStep)="next($event, stepper)"></app-create-questionnaire>
-    </div>
-  </mat-step>
+    <!-- Step 2 -->
+    <mat-step [stepControl]="secondForm">
+      <ng-template matStepLabel>{{ t('step2') | titlecase}}</ng-template>
+      <div class="w-100">
+        <app-create-questions (nextStep)="next($event, stepper)"></app-create-questions>
+      </div>
 
-  <!-- Step 2 -->
-  <mat-step [stepControl]="secondForm">
-    <ng-template matStepLabel>Data Questions</ng-template>
-    <div class="w-100">
-      <app-create-questions (nextStep)="next($event, stepper)"></app-create-questions>
-    </div>
+    </mat-step>
 
-  </mat-step>
-
-  <!-- Step Final -->
-  <mat-step>
-    <ng-template matStepLabel>Review</ng-template>
-    <form >
-      <div class="w-100 text-center mt-5">
-        <div class="quizz-title capital mb-5">{{ titleQuizz }}</div>
-        <div class="quizz-description capital mb-5">{{ descriptionQuizz }}</div>
-        <mat-divider></mat-divider>
-        <div *ngFor="let question of listQuestions; let i = index" class="mb-5 d-flex justify-content-center">
+    <!-- Step Final -->
+    <mat-step>
+      <ng-template matStepLabel>{{ t('step3') | titlecase}}</ng-template>
+      <form >
+        <div class="w-100 text-center mt-5">
+          <div class="quizz-title capital mb-5">{{ titleQuizz }}</div>
+          <div class="quizz-description capital mb-5">{{ descriptionQuizz }}</div>
+          <mat-divider></mat-divider>
+          <div *ngFor="let question of listQuestions; let i = index" class="mb-5 d-flex justify-content-center">
 
           <!-- CARD INFO -->
           <mat-card class="w-75">
@@ -43,17 +43,17 @@
                       </li>
                   </ul>
               </mat-card-content>
-
           </mat-card>
 
-      </div>
-      </div>
-      <div class="w-100 text-center mb-5">
-        <button mat-flat-button  class="btn btn-lg btn-finish" color="primary" (click)="createQuestionnaire()" >Create Quizz</button>
-      </div>
-      <div class="text-center">
-        <button class="me-3" mat-stroked-button matStepperPrevious>Back</button>
-      </div>
-    </form>
-  </mat-step>
-</mat-stepper>
+        </div>
+        </div>
+        <div class="w-100 text-center mt-3 mb-5">
+          <button mat-flat-button  class="btn btn-lg btn-finish" color="primary" (click)="createQuestionnaire()">{{ t('buttonCreate') | uppercase }}</button>
+        </div>
+        <div class="text-center">
+          <button class="me-3" mat-stroked-button matStepperPrevious>{{ t('buttonBack') | uppercase }}</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>

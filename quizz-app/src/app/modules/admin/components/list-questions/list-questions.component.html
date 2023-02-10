@@ -4,7 +4,7 @@
 
         <!-- CARD INFO -->
         <mat-card class="w-75">
-            <mat-card-title class="text-center" >{{ question.title }}</mat-card-title>
+            <mat-card-title class="text-center" >{{ question.title | titlecase }}</mat-card-title>
 
             <div class="d-flex justify-content-around">
                 <span class="badge badge-main">{{ question.seconds }}s</span>
