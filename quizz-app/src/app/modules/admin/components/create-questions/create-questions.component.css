@@ -1,0 +1,43 @@
+.input-title, .input-description {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.text-answers {
+  text-transform: capitalize;
+}
+
+/* BUTTONS */
+.btn:hover{
+  background-color: #69f0ae;
+}
+
+/* DIVIDER */
+mat-divider {
+  margin-left: 0 !important;
+}
+
+/* CARD */
+.secondsScore {
+  background-color: #5a3c70;
+}
+
+.card-subtitle {
+  font-size: 15px;
+}
+
+.example-h2 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.example-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}

@@ -1,0 +1,21 @@
+<div class="container d-flex justify-content-center align-items-center">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Oops, Page Not Found :(
+      </mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="../../../assets/img/error404.svg" alt="Error 404, Page Not Found">
+    <mat-card-content>
+      <p>
+        The Page you are looking for doesn't exist or an other error ocurred. <strong>Click</strong> the button below to go back to the homepage.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button [routerLink]="['/']">
+        <i class="fa-solid fa-arrow-left-long"></i>
+          <span class="ms-2">Home</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

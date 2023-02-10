@@ -1,0 +1,14 @@
+.isCorrect {
+  background-color: rgb(53 201 98);
+  color: #fff;
+  font-size: 17px;
+}
+.isIncorrect {
+  background-color: rgb(238, 82, 10);
+  color: #fff;
+  font-size: 17px;
+}
+.list-group {
+  text-transform: capitalize;
+  font-size: 16px;
+}

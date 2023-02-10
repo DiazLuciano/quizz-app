@@ -1,0 +1,133 @@
+
+<form [formGroup]="form">
+  <div class="d-flex flex-column align-items-center">
+
+    <!-- TITLE -->
+    <mat-form-field class="w-75"  appearance="fill">
+      <mat-label>Question</mat-label>
+      <input matInput class="input-title" formControlName="title" required>
+    </mat-form-field>
+
+    <div class="d-flex flex-wrap flex w-75 justify-content-around">
+
+      <!-- SECONDS -->
+      <mat-card class="secondsScore">
+        <mat-card-header class="justify-content-center">
+          <mat-card-title>SECONDS</mat-card-title>
+          <mat-card-subtitle class="card-subtitle text-center">{{ seconds }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-stroked-button (click)="addSubstractSeconds(-5)" type="button">
+            <i class="fa-solid fa-minus minus-plus" ></i>
+          </button>
+          <button mat-stroked-button (click)="addSubstractSeconds(5)" type="button">
+            <i class="fa-solid fa-plus minus-plus"></i>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+        <!-- SCORE -->
+        <mat-card class="secondsScore">
+          <mat-card-header class="justify-content-center">
+            <mat-card-title>SCORE</mat-card-title>
+            <mat-card-subtitle class="card-subtitle text-center">
+              {{ score }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-slider
+                formControlName="score"
+                [disabled]="disabled"
+                [max]="max"
+                [min]="min"
+                [step]="step"
+                discrete  thumbLabel>
+                <input matSliderThumb [(ngModel)]="sliderValue" [ngModelOptions]="{standalone: true}" >
+            </mat-slider>
+          </mat-card-content>
+        </mat-card>
+
+    </div>
+
+    <!-- Divider -->
+    <mat-divider class="mt-5 w-100" inset></mat-divider>
+
+    <!-- ANSWERS -->
+    <mat-card class="mt-3 w-75 justify-content-between">
+
+      <!-- Required Answers -->
+      <mat-card-title class="text-center" >Required Answers</mat-card-title>
+
+      <!-- Answer 1 -->
+      <div class="row">
+        <div formGroupName="answer1" class="col-lg-11">
+          <mat-form-field class="w-100">
+            <mat-label>Answer 1</mat-label>
+            <input class="text-answers" formControlName="title" matInput #message1 maxlength="50" placeholder="Write answer 1..." required>
+            <mat-hint align="end">{{message1.value.length}} / 50</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-1 d-flex align-items-center">
+          <mat-radio-button (click)="markAsCorrect('1')" matSuffix></mat-radio-button>
+        </div>
+      </div>
+
+      <!-- Answer 2 -->
+      <div class="row">
+        <div formGroupName="answer2" class="col-lg-11">
+          <mat-form-field class="w-100">
+            <mat-label>Answer 2</mat-label>
+            <input class="text-answers" formControlName="title" matInput #message2 maxlength="50" placeholder="Write answer 2..." required>
+            <mat-hint align="end">{{message2.value.length}} / 50</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-1 d-flex align-items-center">
+          <mat-radio-button (click)="markAsCorrect('2')" matSuffix></mat-radio-button>
+        </div>
+      </div>
+
+      <!-- Optional Answers -->
+      <mat-card-title class="mt-5 text-center">Optional Answers</mat-card-title>
+
+      <!-- Answer 3 -->
+      <div class="row">
+        <div formGroupName="answer3" class="col-lg-11">
+          <mat-form-field class="w-100">
+            <mat-label>Answer 3</mat-label>
+            <input class="text-answers" formControlName="title" matInput #message3 maxlength="50" placeholder="Write answer 3...">
+            <mat-hint align="end">{{message3.value.length}} / 50</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-1 d-flex align-items-center">
+          <mat-radio-button [disabled]="message3.value.length === 0" (click)="markAsCorrect('3')" matSuffix></mat-radio-button>
+        </div>
+      </div>
+
+      <!-- Answer 4 -->
+      <div class="row">
+        <div formGroupName="answer4" class="col-lg-11">
+          <mat-form-field class="w-100">
+            <mat-label>Answer 4</mat-label>
+            <input class="text-answers" formControlName="title" matInput #message4 maxlength="50" placeholder="Write answer 4...">
+            <mat-hint align="end">{{message4.value.length}} / 50</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-1 d-flex align-items-center">
+          <mat-radio-button [disabled]="message4.value.length === 0" (click)="markAsCorrect('4')" matSuffix></mat-radio-button>
+        </div>
+      </div>
+
+      <div class="mt-3 text-center">
+        <button mat-flat-button class="btn btn-lg" color="accent" (click)="addQuestion()" type="button">+ Add Question</button>
+      </div>
+    </mat-card>
+
+    <!-- Divider -->
+    <mat-divider class="mt-5 w-100" inset></mat-divider>
+
+    <!-- LIST ADDED QUESTIONS -->
+    <div class="mt-5 w-100">
+      <app-list-questions (nextStep)="saveQuestions()"></app-list-questions>
+    </div>
+  </div>
+</form>

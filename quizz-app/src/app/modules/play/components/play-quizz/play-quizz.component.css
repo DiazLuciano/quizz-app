@@ -1,0 +1,16 @@
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.counter {
+  font-size: 5rem;
+  font-weight: bold;
+}
+.question {
+  font-size: 1.7rem;
+}
+.answer {
+  font-size: 1.5rem;
+}

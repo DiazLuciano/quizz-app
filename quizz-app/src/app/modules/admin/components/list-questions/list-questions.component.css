@@ -1,0 +1,29 @@
+.btn-finish {
+    font-weight: 600;
+    letter-spacing: 0.5rem;
+}
+.btn-finish:hover{
+    background-color: #7b1fa2;
+}
+.correct-answer {
+    background-color: rgb(53 201 98);
+    color: #fff;
+    font-size: 17px;
+  }
+  .card {
+    background-color: #F8F8F5;
+    text-transform: capitalize;
+  }
+  .fa-trash {
+    font-weight: 900;
+    font-size: 25px;
+    color: rgb(173, 51, 51);
+    cursor: pointer;
+  }
+  .fa-trash:hover {
+    color: rgb(224, 83, 83);
+  }
+  .list-group {
+    text-transform: capitalize;
+    font-size: 16px;
+  }

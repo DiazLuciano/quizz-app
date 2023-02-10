@@ -1,0 +1,29 @@
+{
+  "home": {
+    "errorEmptyMsg": "Completa con el PIN del cuestionario",
+    "errorPinNotFound": "PIN del juego no encontrado",
+    "systemError": "Error Interno",
+    "here": "aqui",
+    "makeQuizz": "Crea tus propios cuestionarios gratis",
+    "placeholder": "PIN del Juego",
+    "play": "Jugar"
+  },
+  "validateMsg": "Primero, inserte el PIN del cuestionario",
+  "inputPlayerName": {
+    "placeholder": "nombre jugador",
+    "buttonStart": "comenzar",
+    "buttonBack": "atras"
+  },
+  "table": {
+    "title": "Titulo",
+    "numberQuestions": "Num. Preguntas",
+    "code": "Codigo",
+    "actions": "Acciones"
+  },
+  "listQuestionnaires": {
+    "emptyMsgTitle": "No hay cuestionarios creados"
+  },
+  "playQuizz": {
+    "buttonAccept": "aceptar"
+  }
+}

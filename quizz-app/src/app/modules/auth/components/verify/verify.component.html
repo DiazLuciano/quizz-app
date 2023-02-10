@@ -1,0 +1,22 @@
+<div class="container d-flex justify-content-center align-items-center" *transloco="let t; read: 'verify'">
+  <mat-card class="animate__animated animate__fadeInLeft">
+
+    <mat-card-title class="mb-4 d-flex justify-content-between">
+      <p>{{ t('title') | titlecase }}</p>
+      <mat-icon matSuffix >
+        <i class="fa-solid fa-inbox"></i>
+      </mat-icon>
+    </mat-card-title>
+
+    <mat-card-subtitle>
+      {{ t('description') }}
+    </mat-card-subtitle>
+
+    <mat-divider inset></mat-divider>
+
+    <mat-card-actions class="d-flex p-3 justify-content-between">
+      <button mat-stroked-button routerLink="/auth/login">{{ t('buttonBack') | uppercase }}</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

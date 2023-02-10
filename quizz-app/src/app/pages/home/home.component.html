@@ -1,0 +1,33 @@
+<section class="animate__animated animate__fadeInLeft" *transloco="let t; read: 'home'">
+  <!-- Spinner -->
+  <div *ngIf="loading" class="d-flex justify-content-center">
+    <app-spinner></app-spinner>
+  </div>
+
+  <div *ngIf="!loading">
+    <!-- Game's Pin -->
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-4 text-center">
+        <mat-form-field appearance="fill">
+          <mat-label>{{t('placeholder')}}</mat-label>
+          <input matInput type="text" [(ngModel)]="PIN" maxlength="6" required>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Play -->
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-4">
+        <button mat-raised-button class="main-button" color="primary" (click)="enterGame()" type="submit">{{t('play') | uppercase}}</button>
+      </div>
+    </div>
+
+    <!-- To Login -->
+    <div class="fixed-bottom">
+      <p class="text-center text">
+        {{t('makeQuizz')}}
+        <a routerLink="/auth/login" class="link">{{t('here')}}</a>
+      </p>
+    </div>
+  </div>
+</section>

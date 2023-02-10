@@ -1,0 +1,36 @@
+<section class="animate__animated animate__fadeInLeft" *transloco="let t; read: 'playQuizz'">
+  <!-- Spinner -->
+  <div *ngIf="loading" class="d-flex justify-content-center">
+    <app-spinner></app-spinner>
+  </div>
+
+  <!-- Question & Answers -->
+  <div *ngIf="!loading" class="row d-flex justify-content-center">
+    <div class="col-lg-8">
+      <mat-card>
+        <mat-card-header class="justify-content-center">
+          <mat-card-title class="text-center">
+            <app-counter [seconds]="seconds" class="fw-bolder display-3"></app-counter>
+          </mat-card-title>
+          <mat-card-title class="question capital mt-3">{{ getTitle() }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-divider></mat-divider>
+
+        <mat-card-content>
+          <mat-selection-list [multiple]="false" *ngIf="quizz.listQuestions !== undefined">
+            <mat-list-option
+              class="capital answer text-center"
+              *ngFor="let answer of quizz.listQuestions[indexQuestion].listAnswers; let i = index"
+              (click)="selectedAnswer(answer, i)">
+              {{answer.description}}
+            </mat-list-option>
+          </mat-selection-list>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button class="main-button" color="primary" type="button" (click)="next()" [disabled]="selectedOption === undefined">{{ t('buttonNext') | uppercase }}</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</section>

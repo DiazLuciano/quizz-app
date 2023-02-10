@@ -1,0 +1,14 @@
+.input-title, .input-description {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.notVisible {
+  display: none;
+}
+
+
