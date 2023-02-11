@@ -28,8 +28,6 @@ export class TranslocoHttpLoader implements TranslocoLoader {
         availableLangs: ['en', 'es'],
         defaultLang: 'en',
         fallbackLang: 'es',
-        // Remove this option if your application doesn't support changing language in runtime.
-        reRenderOnLangChange: true,
         prodMode: environment.production,
       })
     },
