@@ -8,6 +8,12 @@
     "placeholder": "PIN Game",
     "play": "Play"
   },
+  "pageNotFound": {
+    "title": "Oops, Page Not Found :(",
+    "description": "The Page you are looking for doesn't exist or an other error ocurred. Click the button below to go back to the homepage.",
+    "buttonReturn": "home",
+    "alt": "Error 404, Page Not Found"
+  },
   "signIn": {
     "title": "log in",
     "errorInvalidMail": "Please enter a valid email address",
@@ -26,8 +32,7 @@
     "description": "Put your username/email to sent you a recovery link verification to restore your password.",
     "buttonBack": "back",
     "buttonRecover": "recover",
-    "placeholderUsername": "Ex. pat@example.com",
-    "placeHolderPassword": "Password"
+    "placeholderUsername": "Ex. pat@example.com"
   },
   "verify": {
     "title": "verify email",
@@ -96,5 +101,12 @@
     "step3": "review",
     "buttonCreate": "create quizz",
     "buttonBack": "back"
+  },
+  "navigation": {
+    "title": "quizz game - admin",
+    "role": "admin",
+    "dashboard": "dashboard",
+    "create": "create quizz",
+    "logOut": "log out"
   }
 }

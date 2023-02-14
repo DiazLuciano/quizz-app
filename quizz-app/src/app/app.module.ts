@@ -24,6 +24,7 @@ import { CoreModule } from 'src/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { GlobalErrorHandlerService } from '../core/services/error/global-error-handler.service';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { GlobalErrorHandlerService } from '../core/services/error/global-error-h
     HttpClientModule,
 
     // Transloco
-    TranslocoRootModule
+    TranslocoRootModule,
+    TranslocoModule
   ],
   providers: [
     Meta,
