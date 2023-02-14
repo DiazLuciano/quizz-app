@@ -1,50 +1,48 @@
-<mat-toolbar class="mat-elevation-z8" color="primary">
-  <button
-    mat-icon-button
-    *ngIf="sidenav.mode === 'over'"
-    (click)="sidenav.toggle()"
-  >
-    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
-    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
-  </button>
-  Quizz Game - Admin
-</mat-toolbar>
-
-<mat-sidenav-container>
-  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <img
-      class="avatar mat-elevation-z8"
-      src="../../../../../assets/img/avatar.png"
-    />
-
-    <h4 class="email">{{ userEmail }}</h4>
-    <p class="designation">Admin</p>
-
-    <mat-divider></mat-divider>
-
-    <button mat-button class="menu-button"  (click)="sidenav.toggle()" routerLink="/admin">
-      <mat-icon class="me-2">home</mat-icon>
-      <span>Dashboard</span>
+<div *transloco="let t; read: 'navigation'">
+  <mat-toolbar class="mat-elevation-z8" color="primary">
+    <button
+      mat-icon-button
+      *ngIf="sidenav.mode === 'over'"
+      (click)="sidenav.toggle()"
+    >
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </button>
-    <button mat-button class="menu-button" (click)="sidenav.toggle()" routerLink="/admin/create">
-      <mat-icon class="me-2">task</mat-icon>
-      <span>Create Quizz</span>
-    </button>
-    <button mat-button class="menu-button" (click)="sidenav.toggle()" routerLink="/admin/statistics">
-      <mat-icon class="me-2">task</mat-icon>
-      <span>Statistics</span>
-    </button>
+    {{ t('title') | titlecase }}
+  </mat-toolbar>
 
-    <mat-divider></mat-divider>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+      <img
+        class="avatar mat-elevation-z8"
+        src="../../../../../assets/img/avatar.png"
+      />
 
-    <button mat-button class="menu-button" (click)="signOut()">
-      <mat-icon>logout</mat-icon>
-      <span class="ms-1">Log Out</span>
-    </button>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+      <h4 class="email">{{ userEmail }}</h4>
+      <p class="designation">{{ t('role') | titlecase }}</p>
+
+      <mat-divider></mat-divider>
+
+      <button mat-button class="menu-button"  (click)="sidenav.toggle()" routerLink="/admin">
+        <mat-icon class="me-2">home</mat-icon>
+        <span>{{ t('dashboard') | titlecase }}</span>
+      </button>
+      <button mat-button class="menu-button" (click)="sidenav.toggle()" routerLink="/admin/create">
+        <mat-icon class="me-2">task</mat-icon>
+        <span>{{ t('create') | titlecase }}</span>
+      </button>
+
+      <mat-divider></mat-divider>
+
+      <button mat-button class="menu-button" (click)="signOut()">
+        <mat-icon>logout</mat-icon>
+        <span class="ms-1">{{ t('logOut') | titlecase }}</span>
+      </button>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

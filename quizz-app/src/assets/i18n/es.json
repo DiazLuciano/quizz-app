@@ -1,100 +1,112 @@
 {
   "home": {
-    "errorEmptyMsg": "Complete with the quizz Code",
-    "errorPinNotFound": "PIN Code have not been found",
-    "systemError": "System Error",
-    "here": "here",
-    "makeQuizz": "Make your own free questionnaire",
-    "placeholder": "PIN Game",
-    "play": "Play"
+    "errorEmptyMsg": "Complete con el codigo del cuestionario",
+    "errorPinNotFound": "Codigo PIN no encontrado",
+    "systemError": "Error Interno",
+    "here": "aqui",
+    "makeQuizz": "Haz tu propio cuestionario",
+    "placeholder": "PIN Juego",
+    "play": "Jugar"
+  },
+  "pageNotFound": {
+    "title": "Oops, pagina no encontrada:(",
+    "description": "La pagina que esta buscando parece que no existe o un error ha ocurrido. Haga click en el boton que se encuentra debajo para volver a la pagina de inicio.",
+    "buttonReturn": "inicio",
+    "alt": "Error 404, Pagina No Encontrada"
   },
   "signIn": {
-    "title": "log in",
-    "errorInvalidMail": "Please enter a valid email address",
-    "errorRequiredMail": "Email is required",
-    "errorRequiredPassword": "Password is required",
-    "errorShortPassword": "Password must have at least 6 characters",
-    "buttonBack": "back",
-    "buttonLogin": "login",
-    "linkRecover": "Recover password",
-    "linkRegister": "Register",
-    "placeholderUsername": "Ex. pat@example.com",
-    "placeHolderPassword": "Password"
+    "title": "iniciar sesión",
+    "errorInvalidMail": "Por favor, ingrese un correo válido",
+    "errorRequiredMail": "El Email es requerido",
+    "errorRequiredPassword": "La contraseña es requerida",
+    "errorShortPassword": "La contraseña debe tener al menos 6 caracteres",
+    "buttonBack": "atras",
+    "buttonLogin": "iniciar sesión",
+    "linkRecover": "Recuperar contraseña",
+    "linkRegister": "Registrarse",
+    "placeholderUsername": "Ej. pat@example.com",
+    "placeHolderPassword": "Contraseña"
   },
   "recover": {
-    "title": "recover password",
-    "description": "Put your username/email to sent you a recovery link verification to restore your password.",
-    "buttonBack": "back",
-    "buttonRecover": "recover",
-    "placeholderUsername": "Ex. pat@example.com",
-    "placeHolderPassword": "Password"
+    "title": "recuperar contraseña",
+    "description": "Pon tu email para enviarte un link de recuperacion para recuperar tu contraseña.",
+    "buttonBack": "atras",
+    "buttonRecover": "recuperar",
+    "placeholderUsername": "Ej. pat@example.com"
   },
   "verify": {
-    "title": "verify email",
-    "description": "An email was recently sent you. Please, check your inbox or your spam and then click on the link to verify your email.",
-    "buttonBack": "back"
+    "title": "verificar email",
+    "description": "Un email te ha sido enviado. Por favor, revisa tu casilla o spam, y luego haz click en el link para verificar tu email.",
+    "buttonBack": "atras"
   },
   "signUp": {
-    "title": "sign up",
-    "description": "Create an account to start your own quizz!",
-    "placeholderUsername": "Ex. pat@example.com",
-    "placeHolderPassword": "Password",
-    "errorInvalidMail": "Please enter a valid email address",
-    "errorRequiredMail": "Email is required",
-    "errorRequiredPassword": "Password is required",
-    "errorShortPassword": "Password must have at least 6 characters",
-    "errornNotSamePass": "Passowords are not same",
-    "buttonBack": "back",
-    "buttonSignUp": "sign up"
+    "title": "registrarse",
+    "description": "Crea una cuenta para empezar tu propio cuestionario!",
+    "placeholderUsername": "Ej. pat@example.com",
+    "placeHolderPassword": "Contraseña",
+    "errorInvalidMail": "Por favor, ingrese un correo válido",
+    "errorRequiredMail": "El Email es requerido",
+    "errorRequiredPassword": "La contraseña es requerida",
+    "errorShortPassword": "La contraseña debe tener al menos 6 caracteres",
+    "errornNotSamePass": "Las contraseñas no son iguales",
+    "buttonBack": "atras",
+    "buttonSignUp": "registrarse"
   },
-  "validateMsg": "Firstly, insert PIN game",
+  "validateMsg": "Primero, inserte PIN del juego",
   "inputPlayerName": {
-    "placeholder": "player name",
-    "buttonStart": "start",
-    "buttonBack": "back"
+    "placeholder": "nombre jugador",
+    "buttonStart": "comenzar",
+    "buttonBack": "atras"
   },
   "table": {
-    "title": "Title",
-    "numberQuestions": "Num. Questions",
-    "code": "Code",
-    "actions": "Actions"
+    "title": "Titulo",
+    "numberQuestions": "Num. Preguntas",
+    "code": "Código",
+    "actions": "Acciones"
   },
   "listQuestionnaires": {
-    "emptyMsgTitle": "There are no questionnaires"
+    "emptyMsgTitle": "No hay cuestionarios"
   },
   "playQuizz": {
-    "buttonNext": "next",
-    "saveSuccess": "Quizz Completed",
-    "saveFail": "Quizz Not Saved"
+    "buttonNext": "siguiente",
+    "saveSuccess": "Cuestionario Completo",
+    "saveFail": "Cuestionario no guardado"
   },
   "quizzResult": {
-    "title": "game resume",
-    "labelName": "name",
-    "labelScore": "score",
-    "labelNumberQuestions": "num. questions",
-    "labelCorrects": "corrects",
-    "labelIncorrects": "incorrects",
-    "buttonBack": "return home"
+    "title": "resumen del juego",
+    "labelName": "nombre",
+    "labelScore": "puntaje",
+    "labelNumberQuestions": "num. preguntas",
+    "labelCorrects": "correctas",
+    "labelIncorrects": "incorrectas",
+    "buttonBack": "regresar inicio"
   },
   "statistics": {
-    "title": "list of games completed",
-    "buttonBack": "back",
-    "noResults": "there is no questionnaires completed",
+    "title": "lista de juegos completados",
+    "buttonBack": "atras",
+    "noResults": "no hay cuestionarios completados",
     "table": {
-      "playerName": "Player",
-      "date": "Date",
-      "score": "Score",
-      "actions": "Actions"
+      "playerName": "Jugador",
+      "date": "Fecha",
+      "score": "Puntaje",
+      "actions": "Acciones"
     },
-    "emptyMsgTitle": "There are no complete questionnaires",
-    "itemDeleted": "Quizz result deleted",
-    "errorDeleting": "Sorry, quizz result couldn't been deleted"
+    "emptyMsgTitle": "No hay cuestionarios completados",
+    "itemDeleted": "Resultado del juego eliminado",
+    "errorDeleting": "Lo siento, el resultado del juego no ha podido ser eliminado"
   },
   "create": {
-    "step1": "data questionnaire",
-    "step2": "data questions",
-    "step3": "review",
-    "buttonCreate": "create quizz",
-    "buttonBack": "back"
+    "step1": "datos del cuestionario",
+    "step2": "datos de las preguntas",
+    "step3": "revisión",
+    "buttonCreate": "crear",
+    "buttonBack": "atras"
+  },
+  "navigation": {
+    "title": "responder cuestionarios - administrador",
+    "role": "administrador",
+    "dashboard": "panel",
+    "create": "crear cuestionario",
+    "logOut": "cerrar sesión"
   }
 }
