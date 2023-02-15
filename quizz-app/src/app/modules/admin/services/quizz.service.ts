@@ -74,21 +74,15 @@ export class QuizzService {
   }
 
   public createQuizz(): void {
-
     if(this.validateData()) {
-
       this.setDataQuizz();
       this.createQuestionnaire(this.questionnaire).then( () => {
-
         this._notificationService.showSuccess('Quizz has been created', 'Success!');
         this._router.navigate(['/admin']);
-
       }).catch( err => {
         console.log(err);
         this._notificationService.showError('An error has occurred. It was not possible to save the quizz.', 'Ups!')
-      })
-      console.log(this.questionnaire)
-
+      });
     } else {
       this._notificationService.showError('You must complete all the required fields', 'Incomplete Data');
     }
