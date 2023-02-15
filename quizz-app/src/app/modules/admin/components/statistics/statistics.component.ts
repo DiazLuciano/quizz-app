@@ -21,7 +21,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   public loading: boolean = false;
   public noResults: boolean = false;
   public idQuizz!: string;
-  public idQuestionnaire: string = '';
+  public idQuizzResult: string = '';
 
   /** Dialog Properties */
   public showDialog: boolean = false;
@@ -60,7 +60,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
    * OnInit
    */
   public ngOnInit(): void {
-
     // Get Results
     this.getResults();
 
@@ -150,23 +149,23 @@ export class StatisticsComponent implements OnInit, OnDestroy {
    * @param id ID of the quizz to delete.
    */
   public selectItemToDelete(id: string): void {
-    this.idQuestionnaire = id;
+    this.idQuizzResult = id;
     this.openDialog();
   }
 
   /**
-   * This method manages the delete method from the quizz service.
+   * This method manages the delete method from the quizz result service.
    */
   public deleteItem(): void {
     this.loading = true;
-    this._quizzService.deleteQuestionnaire(this.idQuestionnaire).then( () => {
-      this._notificationService.showSuccess('', this.itemDeleted);
-    }).catch( err => {
-      console.log(err);
-      this._notificationService.showError(this.errorDeleting, 'Oops');
-
-    });
-    this.loading = false;
+    this._quizzService.deleteUserAnswer(this.idQuizzResult)
+      .then( () => {
+        this._notificationService.showSuccess('', this.itemDeleted);
+      })
+      .catch( (err:any) => {
+        console.log(err);
+          this._notificationService.showError(this.errorDeleting, 'Oops');
+      })
+      .finally( () => { this.loading = false; });
   }
-
 }
